@@ -26,6 +26,7 @@ namespace Sidequest
 			virtual void update_on_database();
 			virtual void delete_on_database();
 
+		protected:
 			virtual std::string create_statement() = 0;
 			virtual void _create_on_database(PreparedStatement* prepared_statement) = 0;
 
