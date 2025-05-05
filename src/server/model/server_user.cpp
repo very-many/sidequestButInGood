@@ -17,7 +17,9 @@ namespace Sidequest
 
 		void ServerUser::_load( PreparedStatement* prepared_statement ) 
 		{
-			database->set_load_key( prepared_statement, email );
+			database->load( prepared_statement, email );
+			database->read_text_value(prepared_statement, "display_name" );
+			database->read_int_value(prepared_statement, "id" );
 		}
 
 		void ServerUser::_store( PreparedStatement* prepared_statement ) {

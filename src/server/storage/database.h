@@ -27,14 +27,23 @@ namespace Sidequest
 			explicit IncorrectSQLStatmentException(const std::string& statement);
 		};
 
+		class NoSuchDatabaseObject : public std::runtime_error
+		{
+		public:
+			explicit NoSuchDatabaseObject(const std::string& key);
+		};
+
 		class Database
 		{
 		public:
 			Database( std::string url );
 			~Database();
 
-			void set_load_key(PreparedStatement* prepared_statement, std::string key);
-			void set_load_key(PreparedStatement* prepared_statement, unsigned int key);
+			bool load(PreparedStatement* prepared_statement, std::string key);
+			bool load(PreparedStatement* prepared_statement, unsigned int key);
+
+			int read_int_value(PreparedStatement* prepared_statement, std::string column_name);
+			std::string read_text_value(PreparedStatement* prepared_statement, std::string column_name);
 
 			StatementCache* statement_cache;
 			ColumnCache* column_cache;

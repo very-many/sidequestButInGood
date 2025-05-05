@@ -9,7 +9,7 @@ namespace Sidequest
 
 	class User {
 	public:
-		typedef unsigned long Id;
+		typedef int Id;
 
 		User();
 		~User();
