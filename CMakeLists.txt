@@ -37,3 +37,16 @@ include_directories(${SIDEQUEST_INCLUDE_DIR})
 include_directories(${SIDEQUEST_SERVER_INCLUDE_DIR})
 include_directories(${SIDEQUEST_DEPENDENCIES_DIR})
 
+# set the application working directory
+set(VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/application_root")
+
+# copy necessary dlls to target directory
+if(MSVC)
+	add_custom_command(
+		TARGET server
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
+		"$<TARGET_FILE_DIR:server>"
+	)
+endif(MSVC)
