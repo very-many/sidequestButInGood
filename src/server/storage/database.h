@@ -28,22 +28,28 @@ namespace Sidequest
 			int error_code;
 		};
 
-		class NoSuchDatabaseObject : public std::runtime_error
+		class UnableToReadObjectException : public std::runtime_error
 		{
 		public:
-			explicit NoSuchDatabaseObject(const std::string& key);
+			explicit UnableToReadObjectException(const std::string& key);
 		};
 
-		class UnableToCreateObject : public std::runtime_error
+		class UnableToCreateObjectException : public std::runtime_error
 		{
 		public:
-			explicit UnableToCreateObject(const std::string& key);
+			explicit UnableToCreateObjectException(const std::string& key);
 		};
 
-		class UnableToDeleteObject : public std::runtime_error
+		class UnableToUpdateObjectException : public std::runtime_error
 		{
 		public:
-			explicit UnableToDeleteObject(const std::string& key);
+			explicit UnableToUpdateObjectException(const std::string& key);
+		};
+
+		class UnableToDeleteObjectException : public std::runtime_error
+		{
+		public:
+			explicit UnableToDeleteObjectException(const std::string& key);
 		};
 
 		class Database

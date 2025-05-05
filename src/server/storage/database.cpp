@@ -19,18 +19,23 @@ namespace Sidequest
 		{
 		}
 
-		NoSuchDatabaseObject::NoSuchDatabaseObject(const std::string& key)
-			: std::runtime_error("NoSuchDatabaseObject: " + key)
-		{
-		}
-
-		UnableToCreateObject::UnableToCreateObject(const std::string& key)
+		UnableToCreateObjectException::UnableToCreateObjectException(const std::string& key)
 			: std::runtime_error("UnableToCreateObject: " + key)
 		{
 		}
 
-		UnableToDeleteObject::UnableToDeleteObject(const std::string& key)
-			: std::runtime_error("UnableToDeleteObject: " + key)
+		UnableToReadObjectException::UnableToReadObjectException(const std::string& key)
+			: std::runtime_error("UnableToReadObjectException: " + key)
+		{
+		}
+
+		UnableToUpdateObjectException::UnableToUpdateObjectException(const std::string& key)
+			: std::runtime_error("UnableToUpdateObjectException: " + key)
+		{
+		}
+
+		UnableToDeleteObjectException::UnableToDeleteObjectException(const std::string& key)
+			: std::runtime_error("UnableToDeleteObjectException: " + key)
 		{
 		}
 

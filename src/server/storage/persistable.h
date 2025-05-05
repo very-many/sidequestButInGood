@@ -26,15 +26,17 @@ namespace Sidequest
 			virtual void update_on_database();
 			virtual void delete_on_database();
 
-			virtual void _create_on_database(PreparedStatement* prepared_statement) = 0;
-			virtual void _read_on_database( PreparedStatement* prepared_statement ) = 0;
-			virtual void _update_on_database(PreparedStatement* prepared_statement) = 0;
-			virtual void _delete_on_database(PreparedStatement* prepared_statement) = 0;
-
 			virtual std::string create_statement() = 0;
+			virtual void _create_on_database(PreparedStatement* prepared_statement) = 0;
+
 			virtual std::string read_statement() = 0;
+			virtual void _read_on_database( PreparedStatement* prepared_statement ) = 0;
+
 			virtual std::string update_statement() = 0;
+			virtual void _update_on_database(PreparedStatement* prepared_statement) = 0;
+
 			virtual std::string delete_statement() = 0;
+			virtual void _delete_on_database(PreparedStatement* prepared_statement) = 0;
 
 			virtual std::string class_id() = 0;
 
