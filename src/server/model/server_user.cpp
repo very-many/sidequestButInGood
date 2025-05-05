@@ -2,12 +2,20 @@
 
 #include "storage/database.h"
 
+#include <iostream>
+
 namespace Sidequest 
 {
 	namespace Server {
 
-		ServerUser::ServerUser( Database* database )
-			: Persistable( database )
+		ServerUser::ServerUser(Database* database)
+			: Persistable(database)
+		{
+		}		
+		
+		ServerUser::ServerUser(Database* database, std::string email)
+			: Persistable(database)
+			, User(email)
 		{
 		}
 
@@ -17,9 +25,10 @@ namespace Sidequest
 
 		void ServerUser::_load( PreparedStatement* prepared_statement ) 
 		{
-			database->load( prepared_statement, email );
-			database->read_text_value(prepared_statement, "display_name" );
-			database->read_int_value(prepared_statement, "id" );
+			std::cout << "preparing statement to load " << email << std::endl;
+			if (!database->load(prepared_statement, email))
+				throw NoSuchDatabaseObject(email);
+			display_name = database->read_text_value(prepared_statement, "display_name" );
 		}
 
 		void ServerUser::_store( PreparedStatement* prepared_statement ) {
@@ -30,7 +39,7 @@ namespace Sidequest
 
 		std::string ServerUser::load_statement() 
 		{
-			return "SELECT id, display_name, email FROM users WHERE email = ?;";
+			return "SELECT * FROM user WHERE email = ?;";
 		}
 
 		std::string ServerUser::store_statement()
@@ -45,7 +54,7 @@ namespace Sidequest
 
 		std::string ServerUser::class_id()
 		{
-			return "USER";
+			return "user";
 		}
 
 	}

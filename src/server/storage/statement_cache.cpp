@@ -28,9 +28,10 @@ namespace Sidequest
 		PreparedStatement* StatementCache::add_statement(std::string statement_key, std::string statement_sql)
 		{
 			PreparedStatement* statement;
-			if (sqlite3_prepare_v2(database->handle, statement_sql.c_str(), -1, &statement, nullptr) != SQLITE_OK)
+			auto result = sqlite3_prepare_v2(database->handle, statement_sql.c_str(), -1, &statement, nullptr);
+			if (result != SQLITE_OK)
 			{
-				throw IncorrectSQLStatmentException( statement_sql );
+				throw IncorrectSQLStatmentException( statement_sql, result );
 			}
 			prepared_statements[statement_key] = statement;
 			return statement;

@@ -15,7 +15,8 @@ namespace Sidequest
 		public:
 			typedef unsigned long Id;
 
-			ServerUser( Database* database );
+			ServerUser(Database* database);
+			ServerUser(Database* database, std::string email);
 			~ServerUser();
 
 			virtual void _load( PreparedStatement* ) override;

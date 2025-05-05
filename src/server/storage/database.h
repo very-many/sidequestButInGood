@@ -24,7 +24,8 @@ namespace Sidequest
 		class IncorrectSQLStatmentException : public std::runtime_error
 		{
 		public:
-			explicit IncorrectSQLStatmentException(const std::string& statement);
+			explicit IncorrectSQLStatmentException(const std::string& statement, int error_code);
+			int error_code;
 		};
 
 		class NoSuchDatabaseObject : public std::runtime_error

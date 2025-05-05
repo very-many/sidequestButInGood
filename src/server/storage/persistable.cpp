@@ -18,7 +18,7 @@ namespace Sidequest
 		{
 		}
 
-		void Persistable::load(Database* database)
+		void Persistable::load()
 		{
 			std::string statement_key = class_id() + "_load";
 			PreparedStatement* prepared_statement = database->statement_cache->get_statement(statement_key);
@@ -30,7 +30,7 @@ namespace Sidequest
 			_load( prepared_statement );
 		}
 
-		void Persistable::store(Database* database)
+		void Persistable::store()
 		{
 			std::string statement_key = class_id() + "_store";
 			PreparedStatement* prepared_statement = database->statement_cache->get_statement(statement_key);
@@ -42,7 +42,7 @@ namespace Sidequest
 			_store(prepared_statement);
 		}
 
-		void Persistable::update(Database* database)
+		void Persistable::update()
 		{
 			std::string statement_key = class_id() + "_update";
 			PreparedStatement* prepared_statement = database->statement_cache->get_statement(statement_key);

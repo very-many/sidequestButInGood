@@ -19,9 +19,9 @@ namespace Sidequest
 			Persistable( Database* database );
 			virtual ~Persistable();
 
-			virtual void load(Database* database);
-			virtual void store(Database* database);
-			virtual void update(Database* database);
+			virtual void load();
+			virtual void store();
+			virtual void update();
 
 			virtual void _load( PreparedStatement* prepared_statement ) = 0;
 			virtual void _store( PreparedStatement* prepared_statement ) = 0;

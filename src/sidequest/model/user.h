@@ -9,12 +9,10 @@ namespace Sidequest
 
 	class User {
 	public:
-		typedef int Id;
-
 		User();
+		User(std::string email);
 		~User();
 
-		Id id;
 		std::string display_name;
 		std::string email;
 

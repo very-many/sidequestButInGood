@@ -17,7 +17,6 @@ namespace Sidequest
 		{
 		}
 
-
 		int ColumnCache::get_column_index(PreparedStatement* statement, std::string column_name)
 		{
 			auto columns_of_table = get_columns_of_statement(statement);
@@ -28,7 +27,7 @@ namespace Sidequest
 		{
 			auto entry = columns_by_statement.find(statement);
 			if (entry == columns_by_statement.end())
-				add_columns_of_statement( statement );
+				return add_columns_of_statement( statement );
 			return entry->second;
 		}
 
@@ -42,6 +41,7 @@ namespace Sidequest
 					(*column_indices)[std::string( name ) ] = i;
 				}
 			}
+			columns_by_statement[statement] = column_indices;
 			return column_indices;
 		}
 
