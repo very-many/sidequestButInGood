@@ -44,17 +44,6 @@ include_directories(${SIDEQUEST_DEPENDENCIES_DIR})
 # set the application working directory
 set(VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/application_root")
 
-# copy necessary dlls to target directory
-if(MSVC)
-	add_custom_command(
-		TARGET server
-		POST_BUILD
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
-		"$<TARGET_FILE_DIR:server>"
-	)
-endif(MSVC)
-
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -83,3 +72,21 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(unit_tests)
+
+# copy necessary dlls to target directory
+if(MSVC)
+	add_custom_command(
+		TARGET server
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
+		"$<TARGET_FILE_DIR:server>"
+	)
+	add_custom_command(
+		TARGET unit_tests
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
+		"$<TARGET_FILE_DIR:server>"
+	)
+endif(MSVC)

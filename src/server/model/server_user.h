@@ -17,6 +17,7 @@ namespace Sidequest
 
 			ServerUser(Database* database);
 			ServerUser(Database* database, std::string email);
+			ServerUser(Database* database, std::string email, std::string display_name, std::string password);
 			~ServerUser();
 
 			virtual void _create_on_database( PreparedStatement* ) override;

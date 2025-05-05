@@ -2,6 +2,8 @@
 
 #include "database.h"
 
+#include <iostream>
+
 namespace Sidequest 
 {
 

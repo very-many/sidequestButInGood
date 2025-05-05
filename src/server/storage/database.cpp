@@ -3,8 +3,6 @@
 #include "statement_cache.h"
 #include "column_cache.h"
 
-#include <iostream>
-
 namespace Sidequest 
 {
 
@@ -21,8 +19,18 @@ namespace Sidequest
 		{
 		}
 
-		NoSuchDatabaseObject::NoSuchDatabaseObject(const std::string& message)
-			: std::runtime_error(message)
+		NoSuchDatabaseObject::NoSuchDatabaseObject(const std::string& key)
+			: std::runtime_error("NoSuchDatabaseObject: " + key)
+		{
+		}
+
+		UnableToCreateObject::UnableToCreateObject(const std::string& key)
+			: std::runtime_error("UnableToCreateObject: " + key)
+		{
+		}
+
+		UnableToDeleteObject::UnableToDeleteObject(const std::string& key)
+			: std::runtime_error("UnableToDeleteObject: " + key)
 		{
 		}
 
@@ -41,31 +49,33 @@ namespace Sidequest
 				close();
 		}
 		
-		bool Database::load(PreparedStatement* prepared_statement, std::string key)
+		void Database::bind(PreparedStatement* prepared_statement, int parameter_index, std::string value)
 		{
-			int error_code = sqlite3_bind_text(prepared_statement, 1, key.c_str(), -1, SQLITE_TRANSIENT);
+			int error_code = sqlite3_bind_text(prepared_statement, parameter_index, value.c_str(), -1, SQLITE_TRANSIENT);
 			if (error_code != SQLITE_OK)
 			{
 				sqlite3_finalize(prepared_statement);
-				throw IncorrectSQLStatmentException("error using key " + key, error_code);
+				throw IncorrectSQLStatmentException("error using key " + value, error_code);
 			}
-			if (sqlite3_step(prepared_statement) != SQLITE_ROW)
-				return false;
-			return true;
 		}
 
-		bool Database::load(PreparedStatement* prepared_statement, unsigned int key)
+		void Database::bind(PreparedStatement* prepared_statement, int parameter_index, unsigned int value)
 		{
-			int error_code = sqlite3_bind_int(prepared_statement, 1, key);
+			int error_code = sqlite3_bind_int(prepared_statement, parameter_index, value );
 			if (error_code != SQLITE_OK)
 			{
 				sqlite3_finalize(prepared_statement);
-				throw IncorrectSQLStatmentException("error using key " + key, error_code);
+				throw IncorrectSQLStatmentException("error using key " + value, error_code);
 			}
-			if (sqlite3_step(prepared_statement) != SQLITE_ROW)
-				return false;
-			return true;
 		}
+
+		bool Database::execute(PreparedStatement* prepared_statement)
+		{
+			int code = sqlite3_step(prepared_statement);
+			if (code == SQLITE_ROW || code == SQLITE_OK || code == SQLITE_DONE )
+				return true;
+			return true;
+		}	
 
 		int Database::read_int_value(PreparedStatement* statement, std::string column_name)
 		{
@@ -78,7 +88,6 @@ namespace Sidequest
 		{
 			int column_index = column_cache->get_column_index(statement, column_name);
 			auto c_str = reinterpret_cast<const char*>( sqlite3_column_text(statement, column_index) );
-			std::cout << "RESULT: " << c_str << std::endl;
 			std::string result( c_str );
 			return result;
 		}

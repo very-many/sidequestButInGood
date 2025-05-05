@@ -3,17 +3,46 @@
 #include "storage/database.h"
 #include "model/server_user.h"
 
-TEST(UnitTests, OPEN_DATABASE)
+class CRUDTests : public ::testing::Test 
 {
-	auto database = new Sidequest::Server::Database("unittest.db");
-	delete database;
+protected:
+	Sidequest::Server::Database* database;
+
+	CRUDTests() {
+	}
+
+	virtual ~CRUDTests() {
+	}
+
+	virtual void SetUp() {
+		database = new Sidequest::Server::Database("unittest.db");
+	}
+
+	virtual void TearDown() {
+		delete database;
+	}
+};
+
+TEST_F(CRUDTests, OPEN_DATABASE)
+{
 }
 
-TEST(UnitTests, CRUD_USER_LOAD) 
+TEST_F(CRUDTests, CRUD_USER_CREATE)
 {
-	auto database = new Sidequest::Server::Database("unittest.db");
-	auto user = new Sidequest::Server::ServerUser( database, "sidequest_root@hs-aalen.de" );
-	user->load();
+	auto user = new Sidequest::Server::ServerUser( database, "temporary@hs-aalen.de", "Temporary User", "");
+	user->create_on_database();
+	delete(user);
+
+	auto user2 = new Sidequest::Server::ServerUser(database, "temporary@hs-aalen.de");
+	user2->read_on_database();
+
+	EXPECT_EQ(user->display_name, "Temporary User");
+}
+
+TEST_F(CRUDTests, CRUD_USER_READ)
+{
+	auto user = new Sidequest::Server::ServerUser(database, "sidequest_root@hs-aalen.de");
+	user->read_on_database();
 
 	EXPECT_EQ(user->display_name, "Sidequest Root User");
 }
