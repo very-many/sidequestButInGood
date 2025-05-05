@@ -23,7 +23,10 @@ namespace Sidequest
 		{
 		}
 
-		void ServerUser::_load( PreparedStatement* prepared_statement ) 
+		void ServerUser::_create_on_database(PreparedStatement* prepared_statement) {
+		}
+
+		void ServerUser::_read_on_database( PreparedStatement* prepared_statement )
 		{
 			std::cout << "preparing statement to load " << email << std::endl;
 			if (!database->load(prepared_statement, email))
@@ -31,25 +34,27 @@ namespace Sidequest
 			display_name = database->read_text_value(prepared_statement, "display_name" );
 		}
 
-		void ServerUser::_store( PreparedStatement* prepared_statement ) {
+		void ServerUser::_update_on_database( PreparedStatement* prepared_statement ) {
 		}
 
-		void ServerUser::_update( PreparedStatement* prepared_statement ) {
+		std::string ServerUser::create_statement()
+		{
+			return "INSERT INTO user(email, display_name) VALUES (?, ?);";
 		}
 
-		std::string ServerUser::load_statement() 
+		std::string ServerUser::read_statement()
 		{
 			return "SELECT * FROM user WHERE email = ?;";
-		}
-
-		std::string ServerUser::store_statement()
-		{
-			return "";
 		}
 
 		std::string ServerUser::update_statement()
 		{
 			return "";
+		}
+
+		std::string ServerUser::delete_statement()
+		{
+			return "SELECT * FROM user WHERE email = ?;";
 		}
 
 		std::string ServerUser::class_id()

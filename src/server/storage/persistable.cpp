@@ -18,31 +18,31 @@ namespace Sidequest
 		{
 		}
 
-		void Persistable::load()
+		void Persistable::read_on_database()
 		{
-			std::string statement_key = class_id() + "_load";
+			std::string statement_key = class_id() + "_read";
 			PreparedStatement* prepared_statement = database->statement_cache->get_statement(statement_key);
 			if (prepared_statement == nullptr )
 			{
-				auto statement_sql = load_statement();
+				auto statement_sql = read_statement();
 				prepared_statement = database->statement_cache->add_statement(statement_key, statement_sql);
 			}
-			_load( prepared_statement );
+			_read_on_database( prepared_statement );
 		}
 
-		void Persistable::store()
+		void Persistable::create_on_database()
 		{
-			std::string statement_key = class_id() + "_store";
+			std::string statement_key = class_id() + "_create";
 			PreparedStatement* prepared_statement = database->statement_cache->get_statement(statement_key);
 			if (prepared_statement == nullptr)
 			{
-				auto statement_sql = store_statement();
+				auto statement_sql = create_statement();
 				prepared_statement = database->statement_cache->add_statement(statement_key, statement_sql);
 			}
-			_store(prepared_statement);
+			_create_on_database(prepared_statement);
 		}
 
-		void Persistable::update()
+		void Persistable::update_on_database()
 		{
 			std::string statement_key = class_id() + "_update";
 			PreparedStatement* prepared_statement = database->statement_cache->get_statement(statement_key);
@@ -51,7 +51,19 @@ namespace Sidequest
 				auto statement_sql = update_statement();
 				prepared_statement = database->statement_cache->add_statement(statement_key, statement_sql);
 			}
-			_update(prepared_statement);
+			_update_on_database(prepared_statement);
+		}
+
+		void Persistable::delete_on_database()
+		{
+			std::string statement_key = class_id() + "_delete";
+			PreparedStatement* prepared_statement = database->statement_cache->get_statement(statement_key);
+			if (prepared_statement == nullptr)
+			{
+				auto statement_sql = delete_statement();
+				prepared_statement = database->statement_cache->add_statement(statement_key, statement_sql);
+			}
+			_delete_on_database(prepared_statement);
 		}
 
 	}
