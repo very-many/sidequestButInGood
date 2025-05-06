@@ -35,6 +35,7 @@ namespace Sidequest
 			database->bind(prepared_statement, 3, password);
 			if (!database->execute(prepared_statement))
 				throw UnableToCreateObjectException(email);
+			database->reset_statement(prepared_statement);
 		}
 
 		void ServerUser::read_on_database()
@@ -45,6 +46,7 @@ namespace Sidequest
 				throw UnableToReadObjectException(email);
 			display_name = database->read_text_value(prepared_statement, "display_name");
 			password     = database->read_text_value(prepared_statement, "password");
+			database->reset_statement(prepared_statement);
 		}
 
 		void ServerUser::update_on_database()
@@ -55,6 +57,7 @@ namespace Sidequest
 			database->bind(prepared_statement, 3, email);
 			if (!database->execute(prepared_statement))
 				throw UnableToUpdateObjectException(email);
+			database->reset_statement(prepared_statement);
 		}
 
 		void ServerUser::delete_on_database()
@@ -63,6 +66,7 @@ namespace Sidequest
 			database->bind(prepared_statement, 1, email);
 			if (!database->execute(prepared_statement))
 				throw UnableToDeleteObjectException(email);
+			database->reset_statement(prepared_statement);
 		}
 
 		std::string ServerUser::class_id()

@@ -14,7 +14,7 @@ namespace Sidequest
 		{
 		}
 
-		IncorrectSQLStatmentException::IncorrectSQLStatmentException(const std::string& message, int error_code)
+		ParameterBindException::ParameterBindException(const std::string& message, int error_code)
 			: std::runtime_error(message), error_code(error_code)
 		{
 		}
@@ -69,8 +69,7 @@ namespace Sidequest
 			int error_code = sqlite3_bind_text(prepared_statement, parameter_index, value.c_str(), -1, SQLITE_TRANSIENT);
 			if (error_code != SQLITE_OK)
 			{
-				sqlite3_finalize(prepared_statement);
-				throw IncorrectSQLStatmentException("error using key " + value, error_code);
+				throw ParameterBindException("error binding parameter " + std::to_string(parameter_index) + " to " + value, error_code);
 			}
 		}
 
@@ -80,7 +79,7 @@ namespace Sidequest
 			if (error_code != SQLITE_OK)
 			{
 				sqlite3_finalize(prepared_statement);
-				throw IncorrectSQLStatmentException("error using key " + value, error_code);
+				throw ParameterBindException("error binding parameter " + std::to_string(parameter_index) + " to " + std::to_string(value), error_code);
 			}
 		}
 
@@ -89,8 +88,13 @@ namespace Sidequest
 			int code = sqlite3_step(prepared_statement);
 			if (code == SQLITE_ROW || code == SQLITE_OK || code == SQLITE_DONE )
 				return true;
-			return true;
-		}	
+			return false;
+		}
+
+		void Database::reset_statement(PreparedStatement* prepared_statement)
+		{
+			sqlite3_reset(prepared_statement);
+		}
 
 		int Database::read_int_value(PreparedStatement* statement, std::string column_name)
 		{

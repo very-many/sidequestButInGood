@@ -21,10 +21,10 @@ namespace Sidequest
 			explicit DatabaseNotFoundException(const std::string& message);
 		};
 
-		class IncorrectSQLStatmentException : public std::runtime_error
+		class ParameterBindException : public std::runtime_error
 		{
 		public:
-			explicit IncorrectSQLStatmentException(const std::string& statement, int error_code);
+			explicit ParameterBindException(const std::string& statement, int error_code);
 			int error_code;
 		};
 
@@ -64,6 +64,7 @@ namespace Sidequest
 			void bind(PreparedStatement* prepared_statement, int parameter_index, unsigned int value);
 
 			bool execute(PreparedStatement* prepared_statement);
+			void reset_statement(PreparedStatement* prepared_statement);
 
 			int read_int_value(PreparedStatement* prepared_statement, std::string column_name);
 			std::string read_text_value(PreparedStatement* prepared_statement, std::string column_name);
