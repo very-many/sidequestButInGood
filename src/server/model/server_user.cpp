@@ -33,7 +33,7 @@ namespace Sidequest
 			database->bind(prepared_statement, 1, email);
 			database->bind(prepared_statement, 2, display_name);
 			database->bind(prepared_statement, 3, password);
-			if (!database->execute(prepared_statement))
+			if ( database->execute(prepared_statement) != SQLITE_DONE )
 				throw UnableToCreateObjectException(email);
 			database->reset_statement(prepared_statement);
 		}
@@ -42,7 +42,7 @@ namespace Sidequest
 		{
 			auto prepared_statement = database->prepare("SELECT * FROM user WHERE email = ?;");
 			database->bind(prepared_statement, 1, email);
-			if (!database->execute(prepared_statement))
+			if ( database->execute(prepared_statement) != SQLITE_ROW )
 				throw UnableToReadObjectException(email);
 			display_name = database->read_text_value(prepared_statement, "display_name");
 			password     = database->read_text_value(prepared_statement, "password");
@@ -55,7 +55,7 @@ namespace Sidequest
 			database->bind(prepared_statement, 1, display_name);
 			database->bind(prepared_statement, 2, password);
 			database->bind(prepared_statement, 3, email);
-			if (!database->execute(prepared_statement))
+			if ( database->execute(prepared_statement) != SQLITE_DONE )
 				throw UnableToUpdateObjectException(email);
 			database->reset_statement(prepared_statement);
 		}
@@ -64,7 +64,7 @@ namespace Sidequest
 		{
 			auto prepared_statement = database->prepare("DELETE FROM user WHERE email=?;");
 			database->bind(prepared_statement, 1, email);
-			if (!database->execute(prepared_statement))
+			if ( database->execute(prepared_statement) != SQLITE_DONE )
 				throw UnableToDeleteObjectException(email);
 			database->reset_statement(prepared_statement);
 		}
