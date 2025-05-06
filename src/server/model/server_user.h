@@ -20,16 +20,10 @@ namespace Sidequest
 			ServerUser(Database* database, std::string email, std::string display_name, std::string password);
 			~ServerUser();
 
-		protected:
-			virtual void _create_on_database( PreparedStatement* ) override;
-			virtual void _read_on_database(PreparedStatement*) override;
-			virtual void _update_on_database(PreparedStatement*) override;
-			virtual void _delete_on_database(PreparedStatement*) override;
-
-			virtual std::string create_statement() override;
-			virtual std::string read_statement() override;
-			virtual std::string update_statement() override;
-			virtual std::string delete_statement() override;
+			virtual void create_on_database() override;
+			virtual void read_on_database() override;
+			virtual void update_on_database() override;
+			virtual void delete_on_database() override;
 
 			virtual std::string class_id() override;
 		};

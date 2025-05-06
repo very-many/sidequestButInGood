@@ -17,8 +17,8 @@ namespace Sidequest
 			StatementCache( Database* database );
 			virtual ~StatementCache();
 
-			PreparedStatement* get_statement(std::string statement_key);
-			PreparedStatement* add_statement(std::string statement_key, std::string statement_sql);
+			PreparedStatement* get_statement(std::string statement_sql);
+			PreparedStatement* add_statement(std::string statement_sql);
 
 		protected:
 			std::unordered_map<std::string, PreparedStatement*> prepared_statements;

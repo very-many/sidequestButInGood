@@ -27,13 +27,9 @@ namespace Sidequest
 		{
 		}
 
-		std::string ServerUser::create_statement()
+		void ServerUser::create_on_database()
 		{
-			return "INSERT INTO user(email, display_name, password) VALUES (?, ?, ?);";
-		}
-
-		void ServerUser::_create_on_database(PreparedStatement* prepared_statement)
-		{
+			auto prepared_statement = database->prepare( "INSERT INTO user(email, display_name, password) VALUES (?, ?, ?);" );
 			database->bind(prepared_statement, 1, email);
 			database->bind(prepared_statement, 2, display_name);
 			database->bind(prepared_statement, 3, password);
@@ -41,13 +37,9 @@ namespace Sidequest
 				throw UnableToCreateObjectException(email);
 		}
 
-		std::string ServerUser::read_statement()
+		void ServerUser::read_on_database()
 		{
-			return "SELECT * FROM user WHERE email = ?;";
-		}
-
-		void ServerUser::_read_on_database( PreparedStatement* prepared_statement )
-		{
+			auto prepared_statement = database->prepare("SELECT * FROM user WHERE email = ?;");
 			database->bind(prepared_statement, 1, email);
 			if (!database->execute(prepared_statement))
 				throw UnableToReadObjectException(email);
@@ -55,13 +47,9 @@ namespace Sidequest
 			password     = database->read_text_value(prepared_statement, "password");
 		}
 
-		std::string ServerUser::update_statement()
+		void ServerUser::update_on_database()
 		{
-			return "UPDATE user set display_name=?, password=? WHERE email=?;";
-		}
-
-		void ServerUser::_update_on_database(PreparedStatement* prepared_statement)
-		{
+			auto prepared_statement = database->prepare("UPDATE user set display_name=?, password=? WHERE email=?;");
 			database->bind(prepared_statement, 1, display_name);
 			database->bind(prepared_statement, 2, password);
 			database->bind(prepared_statement, 3, email);
@@ -69,13 +57,9 @@ namespace Sidequest
 				throw UnableToUpdateObjectException(email);
 		}
 
-		std::string ServerUser::delete_statement()
+		void ServerUser::delete_on_database()
 		{
-			return "DELETE FROM user WHERE email=?;";
-		}
-
-		void ServerUser::_delete_on_database(PreparedStatement* prepared_statement)
-		{
+			auto prepared_statement = database->prepare("DELETE FROM user WHERE email=?;");
 			database->bind(prepared_statement, 1, email);
 			if (!database->execute(prepared_statement))
 				throw UnableToDeleteObjectException(email);

@@ -53,6 +53,16 @@ namespace Sidequest
 			if ( is_open )
 				close();
 		}
+
+		PreparedStatement* Database::prepare(std::string statement_sql)
+		{
+			PreparedStatement* prepared_statement = statement_cache->get_statement( statement_sql );
+			if (prepared_statement == nullptr)
+			{
+				prepared_statement = statement_cache->add_statement(statement_sql);
+			}
+			return prepared_statement;
+		}
 		
 		void Database::bind(PreparedStatement* prepared_statement, int parameter_index, std::string value)
 		{

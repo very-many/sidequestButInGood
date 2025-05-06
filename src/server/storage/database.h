@@ -58,6 +58,8 @@ namespace Sidequest
 			Database( std::string url );
 			~Database();
 
+			PreparedStatement* prepare( std::string statement_sql );
+
 			void bind(PreparedStatement* prepared_statement, int parameter_index, std::string value);
 			void bind(PreparedStatement* prepared_statement, int parameter_index, unsigned int value);
 

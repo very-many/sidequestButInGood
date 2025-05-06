@@ -17,15 +17,15 @@ namespace Sidequest
 		{
 		}
 
-		PreparedStatement* StatementCache::get_statement(std::string statement_key)
+		PreparedStatement* StatementCache::get_statement(std::string statement_sql)
 		{
-			auto statement = prepared_statements.find(statement_key);
+			auto statement = prepared_statements.find(statement_sql);
 			if (statement == prepared_statements.end())
 				return nullptr;
 			return statement->second;
 		}
 
-		PreparedStatement* StatementCache::add_statement(std::string statement_key, std::string statement_sql)
+		PreparedStatement* StatementCache::add_statement(std::string statement_sql)
 		{
 			PreparedStatement* statement;
 			auto result = sqlite3_prepare_v2(database->handle, statement_sql.c_str(), -1, &statement, nullptr);
@@ -33,7 +33,7 @@ namespace Sidequest
 			{
 				throw IncorrectSQLStatmentException( statement_sql, result );
 			}
-			prepared_statements[statement_key] = statement;
+			prepared_statements[statement_sql] = statement;
 			return statement;
 		}
 
