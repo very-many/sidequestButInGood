@@ -64,6 +64,7 @@ namespace Sidequest
 			void bind(PreparedStatement* prepared_statement, int parameter_index, unsigned int value);
 
 			bool execute(PreparedStatement* prepared_statement);
+			bool execute(std::string sql_statement);
 			void reset_statement(PreparedStatement* prepared_statement);
 
 			int read_int_value(PreparedStatement* prepared_statement, std::string column_name);
@@ -75,6 +76,7 @@ namespace Sidequest
 		protected:
 			void open( std::string url );
 			void close();
+			bool is_return_code_good(int code);
 
 		protected:
 			bool is_open = false;

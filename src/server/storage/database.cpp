@@ -86,9 +86,13 @@ namespace Sidequest
 		bool Database::execute(PreparedStatement* prepared_statement)
 		{
 			int code = sqlite3_step(prepared_statement);
-			if (code == SQLITE_ROW || code == SQLITE_OK || code == SQLITE_DONE )
-				return true;
-			return false;
+			return is_return_code_good(code);
+		}
+
+		bool Database::execute(std::string sql_statement)
+		{
+			int code = sqlite3_exec(handle, sql_statement.c_str(), nullptr, nullptr, nullptr);
+			return is_return_code_good(code);
 		}
 
 		void Database::reset_statement(PreparedStatement* prepared_statement)
@@ -126,6 +130,13 @@ namespace Sidequest
 		{
 			sqlite3_close( handle );
 			is_open = false;
+		}
+
+		bool Database::is_return_code_good(int code)
+		{
+			if (code == SQLITE_ROW || code == SQLITE_OK || code == SQLITE_DONE)
+				return true;
+			return false;
 		}
 
 	}
