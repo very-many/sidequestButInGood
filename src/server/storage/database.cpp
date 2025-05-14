@@ -39,9 +39,9 @@ namespace Sidequest
 		{
 		}
 
-		Database::Database( std::string url )
+		Database::Database( std::string filepath_of_database)
 		{
-			open( url );
+			open( filepath_of_database );
 			statement_cache = new StatementCache( this );
 			column_cache = new ColumnCache( this );
 		}

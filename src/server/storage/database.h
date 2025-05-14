@@ -55,7 +55,7 @@ namespace Sidequest
 		class Database
 		{
 		public:
-			Database( std::string url );
+			Database( std::string filepath_of_database );
 			~Database();
 
 			PreparedStatement* prepare( std::string statement_sql );
@@ -74,7 +74,7 @@ namespace Sidequest
 			ColumnCache* column_cache;
 
 		protected:
-			void open( std::string url );
+			void open( std::string filepath_of_database );
 			void close();
 
 		protected:
