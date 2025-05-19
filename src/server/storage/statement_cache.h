@@ -5,25 +5,21 @@
 
 #include "prepared_statement.h"
 
-namespace Sidequest
-{
-	namespace Server
-	{
-		class Database;
+namespace Sidequest::Server {
+    class Database;
 
-		class StatementCache
-		{
-		public:
-			StatementCache( Database* database );
-			virtual ~StatementCache();
+    class StatementCache {
+    public:
+        StatementCache(Database *database);
 
-			PreparedStatement* get_statement(std::string statement_sql);
-			PreparedStatement* add_statement(std::string statement_sql);
+        virtual ~StatementCache();
 
-		protected:
-			std::unordered_map<std::string, PreparedStatement*> prepared_statements;
-			Database* database;
-		};
+        PreparedStatement *get_statement(std::string statement_sql);
 
-	};
-}
+        PreparedStatement *add_statement(std::string statement_sql);
+
+    protected:
+        std::unordered_map<std::string, PreparedStatement *> prepared_statements;
+        Database *database;
+    };
+};

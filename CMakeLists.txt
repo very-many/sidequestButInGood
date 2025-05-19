@@ -18,7 +18,7 @@ include_directories(${SIDEQUEST_INCLUDE_DIR})
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(GetSourceFiles)
 
-set(FILE_TYPES *.cpp *.h )
+set(FILE_TYPES *.cpp *.h)
 find_directories(LIBRARY_SOURCE_DIRS "src/sidequest" "${FILE_TYPES}")
 generate_source_tree(LIBRARY_SOURCES "${LIBRARY_SOURCE_DIRS}" "${FILE_TYPES}")
 
@@ -26,16 +26,18 @@ find_directories(SERVER_SOURCE_DIRS "src/server" "${FILE_TYPES}")
 generate_source_tree(SERVER_SOURCES "${SERVER_SOURCE_DIRS}" "${FILE_TYPES}")
 
 link_directories(${SIDEQUEST_DEPENDENCIES_DIR})
-add_library(sidequest_lib STATIC ${LIBRARY_SOURCES} )
+add_library(sidequest_lib STATIC ${LIBRARY_SOURCES})
 
-add_library(server_lib ${SERVER_SOURCES} )
+add_library(server_lib ${SERVER_SOURCES}
+        src/server/storage/database_creator.cpp
+        src/server/storage/database_creator.h)
 add_dependencies(server_lib sidequest_lib)
 
 add_executable(server src/server/main.cpp)
 
 target_link_libraries(server_lib sidequest_lib)
-target_link_libraries(server server_lib)  
-target_link_libraries(server sqlite3)  
+target_link_libraries(server server_lib)
+target_link_libraries(server sqlite3)
 
 include_directories(${SIDEQUEST_INCLUDE_DIR})
 include_directories(${SIDEQUEST_SERVER_INCLUDE_DIR})
@@ -46,8 +48,8 @@ set(VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/application_root"
 
 include(FetchContent)
 FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
+        googletest
+        URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -59,15 +61,16 @@ find_directories(TEST_SOURCE_DIRS "src/unit_tests" "${FILE_TYPES}")
 generate_source_tree(TEST_SOURCES "${TEST_SOURCE_DIRS}" "${FILE_TYPES}")
 
 add_executable(
-  unit_tests
-  ${TEST_SOURCES}
+        unit_tests
+        ${TEST_SOURCES}
+        src/unit_tests/db_creator_test.cpp
 )
 target_link_libraries(
-  unit_tests
-  GTest::gtest_main
-  sidequest_lib
-  server_lib
-  sqlite3
+        unit_tests
+        GTest::gtest_main
+        sidequest_lib
+        server_lib
+        sqlite3
 )
 
 include(GoogleTest)
@@ -75,18 +78,18 @@ gtest_discover_tests(unit_tests)
 
 # copy necessary dlls to target directory
 # if(MSVC)
-	add_custom_command(
-		TARGET server
-		POST_BUILD
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
-		"$<TARGET_FILE_DIR:server>"
-	)
-	add_custom_command(
-		TARGET unit_tests
-		POST_BUILD
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
-		"$<TARGET_FILE_DIR:server>"
-	)
+add_custom_command(
+        TARGET server
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
+        "$<TARGET_FILE_DIR:server>"
+)
+add_custom_command(
+        TARGET unit_tests
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
+        "$<TARGET_FILE_DIR:server>"
+)
 # endif(MSVC)

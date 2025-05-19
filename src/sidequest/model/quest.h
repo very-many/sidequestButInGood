@@ -3,19 +3,18 @@
 #include <string>
 #include <vector>
 
-namespace Sidequest
-{
+namespace Sidequest {
+    class Quest {
+    public:
+        typedef unsigned long Id;
 
-	class Quest {
-	public:
-		typedef unsigned long Id;
+        Quest();
 
-		Quest();
-		~Quest();
+        ~Quest();
 
-		Id id;
-		std::string caption;
-		Quest* parent;
-		std::vector<Quest*> subquests;
-	};
+        Id id;
+        std::string caption;
+        Quest *parent;
+        std::vector<Quest *> subquests;
+    };
 }

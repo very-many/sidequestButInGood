@@ -1,13 +1,9 @@
 #include "quest.h"
 
-namespace Sidequest 
-{
+namespace Sidequest {
+    Quest::Quest() {
+    }
 
-	Quest::Quest()
-	{
-	}
-	
-	Quest::~Quest()
-	{
-	}
+    Quest::~Quest() {
+    }
 }

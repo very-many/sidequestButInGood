@@ -3,20 +3,12 @@
 #include "database.h"
 #include "statement_cache.h"
 
-namespace Sidequest 
-{
 
-	namespace Server 
-	{
+namespace Sidequest::Server {
+    Persistable::Persistable(Database *database) {
+        this->database = database;
+    }
 
-		Persistable::Persistable( Database* database )
-		{
-			this->database = database;
-		}
-
-		Persistable::~Persistable()
-		{
-		}
-	}
-
+    Persistable::~Persistable() {
+    }
 }

@@ -2,10 +2,7 @@
 
 #include <sqlite3.h>
 
-namespace Sidequest
-{
-	namespace Server
-	{
-		typedef struct sqlite3_stmt PreparedStatement;
-	}
+
+namespace Sidequest::Server {
+    typedef struct sqlite3_stmt PreparedStatement;
 }
