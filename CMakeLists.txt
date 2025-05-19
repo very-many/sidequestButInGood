@@ -33,7 +33,7 @@ add_dependencies(server_lib sidequest_lib)
 
 add_executable(server src/server/main.cpp)
 
-target_link_libraries(server sidequest_lib)  
+target_link_libraries(server_lib sidequest_lib)
 target_link_libraries(server server_lib)  
 target_link_libraries(server sqlite3)  
 
