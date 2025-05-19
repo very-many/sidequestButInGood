@@ -74,7 +74,7 @@ include(GoogleTest)
 gtest_discover_tests(unit_tests)
 
 # copy necessary dlls to target directory
-if(MSVC)
+# if(MSVC)
 	add_custom_command(
 		TARGET server
 		POST_BUILD
@@ -89,4 +89,4 @@ if(MSVC)
 		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
 		"$<TARGET_FILE_DIR:server>"
 	)
-endif(MSVC)
+# endif(MSVC)
