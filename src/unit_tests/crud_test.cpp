@@ -2,6 +2,8 @@
 
 #include "storage/database.h"
 #include "model/server_user.h"
+#include "storage/database_creator.h"
+
 
 class CRUDTests : public ::testing::Test {
 protected:
@@ -14,8 +16,9 @@ protected:
     }
 
     virtual void SetUp() {
-        database = new Sidequest::Server::Database(":memory:");
-        database->execute("create table user(email text primary key, display_name text, password text);");
+        std::string db_path = ":memory:"; //"../../application_root/crud_test.db";
+        std::string schema_path = "../../application_root/create_test_db.sql";
+        database = Sidequest::Server::DatabaseCreator::fetch_database(db_path, schema_path);
     }
 
     virtual void TearDown() {
@@ -50,6 +53,7 @@ TEST_F(CRUDTests, CRUD_USER_CREATE_DOUBLE) {
         user->create_on_database();
         FAIL();
     } catch (const UnableToCreateObjectException &expected) {
+        EXPECT_STREQ(expected.what(), "UnableToCreateObject: crud_user_create_double@hs-aalen.de");
         delete(user);
     }
 }

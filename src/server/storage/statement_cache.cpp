@@ -27,4 +27,5 @@ namespace Sidequest::Server {
         prepared_statements[statement_sql] = statement;
         return statement;
     }
+
 }

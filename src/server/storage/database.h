@@ -45,31 +45,18 @@ namespace Sidequest::Server {
 
     class Database {
     public:
-        Database(std::string filepath_of_database);
+        Database(const std::string &filepath_of_database);
 
         ~Database();
-
-        PreparedStatement *prepare(std::string statement_sql);
-
-        void bind(PreparedStatement *prepared_statement, int parameter_index, std::string value);
-
-        void bind(PreparedStatement *prepared_statement, int parameter_index, unsigned int value);
-
-        int execute(PreparedStatement *prepared_statement);
-
-        int execute(std::string sql_statement);
-
-        void reset_statement(PreparedStatement *prepared_statement);
-
-        int read_int_value(PreparedStatement *prepared_statement, std::string column_name);
-
-        std::string read_text_value(PreparedStatement *prepared_statement, std::string column_name);
 
         StatementCache *statement_cache;
         ColumnCache *column_cache;
 
+        int execute(const std::string &sql_statement) const;
+
+
     protected:
-        void open(std::string filepath_of_database);
+        void open(const std::string &filepath_of_database);
 
         void close();
 

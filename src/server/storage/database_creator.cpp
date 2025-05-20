@@ -8,6 +8,7 @@
 
 namespace Sidequest::Server {
 
+    //TODO: change string type
     Database * DatabaseCreator::fetch_database(std::string &database_path, std::string &schema_path) {
         if (std::ifstream(database_path).is_open())
             return new Database(database_path);

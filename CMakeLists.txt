@@ -30,7 +30,10 @@ add_library(sidequest_lib STATIC ${LIBRARY_SOURCES})
 
 add_library(server_lib ${SERVER_SOURCES}
         src/server/storage/database_creator.cpp
-        src/server/storage/database_creator.h)
+        src/server/storage/database_creator.h
+        src/server/storage/query.cpp
+        src/server/storage/query.h
+)
 add_dependencies(server_lib sidequest_lib)
 
 add_executable(server src/server/main.cpp)
