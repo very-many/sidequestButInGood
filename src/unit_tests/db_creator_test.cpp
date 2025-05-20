@@ -24,13 +24,6 @@ protected:
 
 using namespace Sidequest::Server;
 
-TEST_F(DBTests, FILE_TO_STRING) {
-    auto stream = std::ifstream(R"(../../application_root/create_database.sql)");
-    std::string s = DatabaseCreator::file_to_string(stream);
-    std::cout << s;
-    EXPECT_EQ(s, "create table user(email text primary key, display_name text, password text);");
-}
-
 TEST_F(DBTests, FETCH_DB) {
     std::string db_path =  R"(../../application_root/test.db)";
     std::remove(db_path.c_str());
@@ -48,4 +41,21 @@ TEST_F(DBTests, FETCH_EXISTING_DB) {
     EXPECT_NE(database, nullptr);
 }
 
-TEST_F(DBTests, MISSING_SCHEMA_FILE){}
+TEST_F(DBTests, RESET_EXISTING_DB) {
+    std::string db_path = R"(../../application_root/test_reset.db)";
+    std::string schema_path = R"(../../application_root/create_database.sql)";
+    auto database = DatabaseCreator::reset_database(db_path, schema_path);
+
+    EXPECT_NE(database, nullptr);
+}
+
+TEST_F(DBTests, MISSING_SCHEMA_FILE) {
+    try {
+        std::string db_path = R"(../../application_root/test_missing_schema_file.db)";
+        std::string schema_path = R"(../../application_root/this_does_not_exist.sql)";
+        auto database = DatabaseCreator::fetch_database(db_path, schema_path);
+    }
+    catch (const std::runtime_error &e) {
+        EXPECT_STREQ(e.what(), "Unable to open schema file");
+    }
+}

@@ -22,7 +22,11 @@ namespace Sidequest::Server {
 
         apply_schema(*database, schema);
         return database;
+    }
 
+    Database * DatabaseCreator::reset_database(std::string &database_path, std::string &schema_path) {
+        std::remove(database_path.c_str());
+        return fetch_database(database_path, schema_path);
     }
 
     std::string DatabaseCreator::file_to_string(std::ifstream &schema_file) {

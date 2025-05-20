@@ -8,10 +8,11 @@ namespace Sidequest::Server {
     public:
 
         static Database* fetch_database(std::string&, std::string&);
-        static std::string file_to_string(std::ifstream &);
+        static Database* reset_database(std::string&, std::string&);
 
     private:
 
+        static std::string file_to_string(std::ifstream &);
         static std::ifstream attempt_open_filepath_as_stream(const std::string &);
         static void apply_schema(Database & database, std::string & string);
 
