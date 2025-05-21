@@ -8,6 +8,6 @@ namespace Sidequest {
 
     Quest::~Quest() {
         for (const auto subquest : subquests)
-            delete subquest;
+            delete(subquest);
     }
 }

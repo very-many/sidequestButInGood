@@ -1,0 +1,21 @@
+# ninja log v6
+1877	1958	7694772585817793	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	91cce9d8951bba41
+5	93	7694772567159088	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	efab72a5761cd9e3
+1598	1707	7694772583297843	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	8f1e3d469a576a0
+5	93	7694772567159088	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	efab72a5761cd9e3
+1708	1795	7694772584177808	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	824e4600b35afe1b
+94	1598	7694772582178581	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	36f0bb482755b75c
+1708	1795	7694772584177808	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	824e4600b35afe1b
+94	1598	7694772582178581	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	36f0bb482755b75c
+1598	1707	7694772583297843	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	8f1e3d469a576a0
+2033	2108	7694772587323076	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	ae2a3acec5eecc65
+1795	1877	7694772584987800	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	4ea57d3488becd27
+2108	2217	7694772588402346	CMakeFiles/googletest-populate-complete	c96ff001fd4228c5
+1795	1877	7694772584987800	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	4ea57d3488becd27
+1877	1958	7694772585817793	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	91cce9d8951bba41
+2108	2217	7694772588402346	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	c96ff001fd4228c5
+1959	2033	7694772586561488	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	b84d70304017666a
+1959	2033	7694772586561488	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	b84d70304017666a
+2033	2108	7694772587323076	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	ae2a3acec5eecc65
+2108	2217	7694772588402346	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	c96ff001fd4228c5
+2108	2217	7694772588402346	C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	c96ff001fd4228c5
