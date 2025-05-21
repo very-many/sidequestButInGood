@@ -1,4 +1,4 @@
-#include "database_creator.h"
+#include "database_factory.h"
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -9,7 +9,7 @@
 namespace Sidequest::Server {
 
     //TODO: change string type
-    Database * DatabaseCreator::fetch_database(std::string &database_path, std::string &schema_path) {
+    Database * DatabaseFactory::fetch_database(std::string &database_path, std::string &schema_path) {
         if (std::ifstream(database_path).is_open())
             return new Database(database_path);
 
@@ -25,12 +25,12 @@ namespace Sidequest::Server {
         return database;
     }
 
-    Database * DatabaseCreator::reset_database(std::string &database_path, std::string &schema_path) {
+    Database * DatabaseFactory::reset_database(std::string &database_path, std::string &schema_path) {
         std::remove(database_path.c_str());
         return fetch_database(database_path, schema_path);
     }
 
-    std::string DatabaseCreator::file_to_string(std::ifstream &schema_file) {
+    std::string DatabaseFactory::file_to_string(std::ifstream &schema_file) {
         schema_file.clear();
         schema_file.seekg(0, std::ios::beg);
 
@@ -39,14 +39,14 @@ namespace Sidequest::Server {
         return oss.str();
     }
 
-    std::ifstream DatabaseCreator::attempt_open_filepath_as_stream(const std::string &path) {
+    std::ifstream DatabaseFactory::attempt_open_filepath_as_stream(const std::string &path) {
         std::ifstream filecontent_as_stream(path);
         if (!filecontent_as_stream.is_open())
             throw std::runtime_error("Unable to open schema file");
         return filecontent_as_stream;
     }
 
-    void DatabaseCreator::apply_schema(Database& database, std::string &schema) {
+    void DatabaseFactory::apply_schema(Database& database, std::string &schema) {
         int code = database.execute(schema);
         if (code != SQLITE_OK) {
             throw std::runtime_error("Unable to apply schema " + schema + " " + sqlite3_errstr(code));

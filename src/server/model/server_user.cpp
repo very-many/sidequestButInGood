@@ -24,21 +24,22 @@ namespace Sidequest::Server {
         query.bind(1, email);
         query.bind(2, display_name);
         query.bind(3, password);
+        query.execute();
 
-        if (query.execute() != SQLITE_DONE)
+        if (!query.is_done())
             throw UnableToCreateObjectException(email);
-        query.reset_statement();
     }
 
     void ServerUser::read_on_database() {
         auto query = Query(database, "SELECT * FROM user WHERE email = ?;");
         query.bind(1, email);
+        query.execute();
 
-        if (query.execute() != SQLITE_ROW)
+        if (!query.has_row())
             throw UnableToReadObjectException(email);
+
         display_name = query.read_text_value("display_name");
         password = query.read_text_value("password");
-        query.reset_statement();
     }
 
     void ServerUser::update_on_database() {
@@ -46,17 +47,19 @@ namespace Sidequest::Server {
         query.bind(1, display_name);
         query.bind(2, password);
         query.bind(3, email);
-        if (query.execute() != SQLITE_DONE)
+        query.execute();
+
+        if (!query.is_done())
             throw UnableToUpdateObjectException(email);
-        query.reset_statement();
     }
 
     void ServerUser::delete_on_database() {
         auto query = Query(database, "DELETE FROM user WHERE email=?;");
         query.bind(1, email);
-        if (query.execute() != SQLITE_DONE)
+        query.execute();
+
+        if (!query.is_done())
             throw UnableToDeleteObjectException(email);
-        query.reset_statement();
     }
 
     std::string ServerUser::class_id() {

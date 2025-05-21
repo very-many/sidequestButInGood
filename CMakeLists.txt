@@ -29,10 +29,12 @@ link_directories(${SIDEQUEST_DEPENDENCIES_DIR})
 add_library(sidequest_lib STATIC ${LIBRARY_SOURCES})
 
 add_library(server_lib ${SERVER_SOURCES}
-        src/server/storage/database_creator.cpp
-        src/server/storage/database_creator.h
+        src/server/storage/database_factory.cpp
+        src/server/storage/database_factory.h
         src/server/storage/query.cpp
         src/server/storage/query.h
+        src/server/model/server_quest.cpp
+        src/server/model/server_quest.h
 )
 add_dependencies(server_lib sidequest_lib)
 
@@ -66,7 +68,8 @@ generate_source_tree(TEST_SOURCES "${TEST_SOURCE_DIRS}" "${FILE_TYPES}")
 add_executable(
         unit_tests
         ${TEST_SOURCES}
-        src/unit_tests/db_creator_test.cpp
+        src/unit_tests/db_factory_test.cpp
+        src/unit_tests/query_test.cpp
 )
 target_link_libraries(
         unit_tests

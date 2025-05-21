@@ -4,7 +4,7 @@
 #include "database.h"
 
 namespace Sidequest::Server {
-    class DatabaseCreator {
+    class DatabaseFactory {
     public:
 
         static Database* fetch_database(std::string&, std::string&);

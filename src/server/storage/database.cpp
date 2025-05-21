@@ -57,7 +57,6 @@ namespace Sidequest::Server {
     }
 
     int Database::execute(const std::string &sql_statement) const {
-        int code = sqlite3_exec(handle, sql_statement.c_str(), nullptr, nullptr, nullptr);
-        return code;
+        return sqlite3_exec(handle, sql_statement.c_str(), nullptr, nullptr, nullptr);
     }
 }

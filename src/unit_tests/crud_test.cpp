@@ -2,7 +2,7 @@
 
 #include "storage/database.h"
 #include "model/server_user.h"
-#include "storage/database_creator.h"
+#include "storage/database_factory.h"
 
 
 class CRUDTests : public ::testing::Test {
@@ -18,7 +18,7 @@ protected:
     virtual void SetUp() {
         std::string db_path = ":memory:"; //"../../application_root/crud_test.db";
         std::string schema_path = "../../application_root/create_test_db.sql";
-        database = Sidequest::Server::DatabaseCreator::fetch_database(db_path, schema_path);
+        database = Sidequest::Server::DatabaseFactory::fetch_database(db_path, schema_path);
     }
 
     virtual void TearDown() {

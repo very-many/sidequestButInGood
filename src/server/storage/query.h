@@ -6,24 +6,23 @@
 namespace Sidequest::Server {
     class Query {
     public:
-        Query(Database *database, std::string statement_sql);
+        Query(Database *database, const std::string &statement_sql);
 
         ~Query();
 
-        void bind(int parameter_index, std::string value) const;
+        void bind(int parameter_index, const std::string &value);
 
-        void bind(int parameter_index, unsigned int value) const;
+        void bind(int parameter_index, unsigned int value);
 
-        int execute() const;
+        void execute();
 
-        int next() const;
+        [[nodiscard]] int read_int_value(const std::string &column_name) const;
 
-        void reset_statement() const;
+        [[nodiscard]] std::string read_text_value(const std::string &column_name) const;
 
-        int read_int_value(const std::string &column_name) const;
+        [[nodiscard]] bool has_row() const;
 
-        std::string read_text_value(const std::string &column_name) const;
-
+        [[nodiscard]] bool is_done() const;
 
         class Iterator {
         public:
@@ -43,10 +42,15 @@ namespace Sidequest::Server {
         Iterator end();
 
     private:
-        Database *database;
-        PreparedStatement *prepared_statement;
+        Database *database = nullptr;
+        PreparedStatement *prepared_statement = nullptr;
+        int status_code = 0;
 
-        PreparedStatement *prepare(const std::string &statement_sql) const;
+        [[nodiscard]] PreparedStatement *prepare(const std::string &statement_sql) const;
+
+        [[nodiscard]] bool is_ok() const;
+
+        void reset_statement() const;
     };
 };
 

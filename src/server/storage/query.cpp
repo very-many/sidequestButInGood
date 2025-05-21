@@ -4,14 +4,14 @@
 #include "column_cache.h"
 
 namespace Sidequest::Server {
-    Query::Query(Database *database, std::string statement_sql) {
-        this->database = database;
-        prepared_statement = prepare(std::move(statement_sql));
+
+    Query::Query(Database *database, const std::string& statement_sql)
+        : database(database), prepared_statement(prepare(statement_sql)) {
     }
 
     Query::~Query() {
         reset_statement();
-        //TODO: FIGMA wann finalize?
+        //TODO: FIGMA where finalize?
         //sqlite3_finalize(prepared_statement);
     }
 
@@ -22,63 +22,65 @@ namespace Sidequest::Server {
         return prepared_statement;
     }
 
-    int Query::execute() const {
-        return next();
+    void Query::execute() {
+        this->status_code = sqlite3_step(prepared_statement);
+        if (!has_row() && !is_done())
+            throw ParameterBindException("error executing query", this->status_code);
     }
 
-    int Query::next() const {
-        const int return_code = sqlite3_step(prepared_statement);
-        if (return_code == SQLITE_ROW || return_code == SQLITE_DONE)
-            return return_code;
-        throw ParameterBindException("error executing query", return_code);
-    }
-
-
-    void Query::bind(int parameter_index, std::string value) const {
-        int error_code = sqlite3_bind_text(prepared_statement, parameter_index, value.c_str(), -1, SQLITE_TRANSIENT);
-        if (error_code != SQLITE_OK)
+    void Query::bind(const int parameter_index, const std::string& value) {
+        this->status_code = sqlite3_bind_text(prepared_statement, parameter_index, value.c_str(), -1, SQLITE_TRANSIENT);
+        if (!is_ok())
             throw ParameterBindException("error binding parameter " + std::to_string(parameter_index) + " to " + value,
-                                         error_code);
+                                         status_code);
     }
 
-    void Query::bind(int parameter_index, const unsigned int value) const {
-        int error_code = sqlite3_bind_int(prepared_statement, parameter_index, value);
-        if (error_code != SQLITE_OK) {
+    void Query::bind(const int parameter_index, const unsigned int value) {
+        this->status_code = sqlite3_bind_int(prepared_statement, parameter_index, value);
+        if (!is_ok()) {
             throw ParameterBindException(
-                "error binding parameter " + std::to_string(parameter_index) + " to " + std::to_string(value),
-                error_code);
+                "error binding parameter " + std::to_string(parameter_index) + " to " + std::to_string(value), status_code);
         }
     }
+
+    //TODO: allow other datatype binding
+    //TODO: allow other datatype dreading
 
     void Query::reset_statement() const {
         sqlite3_reset(prepared_statement);
     }
 
     int Query::read_int_value(const std::string &column_name) const {
-        int column_index = database->column_cache->get_column_index(prepared_statement, column_name);
-        int result = static_cast<int>(sqlite3_column_int64(prepared_statement, column_index));
-        return result;
+        const int column_index = database->column_cache->get_column_index(prepared_statement, column_name);
+        const int col_value = static_cast<int>(sqlite3_column_int64(prepared_statement, column_index));
+        return col_value;
     }
 
     std::string Query::read_text_value(const std::string &column_name) const {
-        int column_index = database->column_cache->get_column_index(prepared_statement, column_name);
-        auto c_str = reinterpret_cast<const char *>(sqlite3_column_text(prepared_statement, column_index));
-        std::string result(c_str);
+        const int column_index = database->column_cache->get_column_index(prepared_statement, column_name);
+        const auto col_value = reinterpret_cast<const char *>(sqlite3_column_text(prepared_statement, column_index));
+        std::string result(col_value);
         return result;
     }
 
-    void Query::free() {
-        //TODO: FIGMA remove from statement cache
-        //database->statement_cache->remove_statement(prepared_statement);
-        sqlite3_finalize(prepared_statement);
+    bool Query::has_row() const {
+        return this->status_code == SQLITE_ROW;
+    }
 
+    bool Query::is_done() const {
+        return this->status_code == SQLITE_DONE;
+    }
+
+    bool Query::is_ok() const {
+        return this->status_code == SQLITE_OK;
     }
 
 
+    //Iterator
     Query::Iterator::Iterator(Query *query, bool is_end) : query(query), is_end(is_end) {
         if (!is_end) {
-            int return_code = sqlite3_step(query->prepared_statement);
-            if (return_code != SQLITE_ROW)
+            query->status_code = sqlite3_step(query->prepared_statement);
+            if (query->status_code != SQLITE_ROW)
                 is_end = true;
         }
     }
@@ -90,7 +92,7 @@ namespace Sidequest::Server {
     }
 
     bool Query::Iterator::operator!=(const Iterator &other) const {
-        return end != other.is_end;
+        return is_end != other.is_end;
     }
 
     Query::Iterator Query::begin() {

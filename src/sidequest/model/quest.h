@@ -10,11 +10,19 @@ namespace Sidequest {
 
         Quest();
 
+        Quest(Id id);
+
         ~Quest();
 
         Id id;
         std::string caption;
         Quest *parent;
         std::vector<Quest *> subquests;
+
+        //TODO: other fields???
+        // - Owner
+        // - Editor
+        // - description
+
     };
 }
