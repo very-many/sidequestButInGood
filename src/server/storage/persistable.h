@@ -1,8 +1,6 @@
 #pragma once
 
 #include <string>
-#include <vector>
-#include <sqlite3.h>
 
 #include "prepared_statement.h"
 
@@ -14,7 +12,7 @@ namespace Sidequest::Server {
     /* All persistent classes should derive from Persistable */
     class Persistable {
     public:
-        Persistable(Database *database);
+        explicit Persistable(Database *database);
 
         virtual ~Persistable();
 

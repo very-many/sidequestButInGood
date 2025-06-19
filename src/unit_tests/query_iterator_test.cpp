@@ -5,34 +5,32 @@
 #include "storage/database_factory.h"
 #include "storage/query.h"
 
-
 class QUERYTest : public ::testing::Test {
 protected:
-    Sidequest::Server::Database *database;
+    Sidequest::Server::Database *database = nullptr;
 
-    QUERYTest() {
-    }
+    QUERYTest() {}
 
-    virtual ~QUERYTest() {
-    }
+    ~QUERYTest() override = default;
 
-    virtual void SetUp() {
-        std::string db_path = ":memory:"; //"../../application_root/crud_test.db";
-        std::string schema_path = "../../application_root/create_test_db.sql";
+    void SetUp() override {
+        // std::string db_path = "../../application_root/crud_test.db";
+        std::string db_path = ":memory:";
+        std::string schema_path = "../../application_root/create_database.sql";
         this->database = Sidequest::Server::DatabaseFactory::fetch_database(db_path, schema_path);
         populate_database();
     }
 
-    virtual void TearDown() {
+    void TearDown() override {
         delete database;
     }
 
     private:
         void populate_database() const {
             using namespace Sidequest::Server;
-            ServerUser(database, "user_1@hs-aalen.de", "temp User1", "").create_on_database();
-            ServerUser(database, "user_2@hs-aalen.de", "temp User2", "").create_on_database();
-            ServerUser(database, "user_3@hs-aalen.de", "temp User3", "").create_on_database();
+            ServerUser(database, "temp User1", "user_1@hs-aalen.de", "").create_on_database();
+            ServerUser(database, "temp User2", "user_2@hs-aalen.de", "").create_on_database();
+            ServerUser(database, "temp User3", "user_3@hs-aalen.de", "").create_on_database();
         }
 };
 
@@ -48,5 +46,3 @@ TEST_F(QUERYTest, QUERY_ITERATOR) {
         count++;
     }
 }
-
-

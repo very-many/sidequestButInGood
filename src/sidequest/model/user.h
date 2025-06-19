@@ -8,14 +8,14 @@ namespace Sidequest {
 
     class User {
     public:
-        User();
+        typedef unsigned long Id;
+        explicit User(Id);
 
-        User(std::string email);
+        User(const std::string&, const std::string&, const std::string&);
 
-        User(std::string email, std::string display_name, std::string password);
+        virtual ~User();
 
-        ~User();
-
+        Id id = 0;
         std::string display_name;
         std::string email;
         std::string password;

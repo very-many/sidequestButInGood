@@ -2,8 +2,8 @@
 #include <gtest/gtest.h>
 
 #include "storage/database_factory.h"
+#include "storage/database.h"
 #include <cstdio>
-#include <iostream>
 
 class DbFactoryTests : public ::testing::Test {
 protected:
@@ -12,15 +12,15 @@ protected:
     DbFactoryTests() {
     }
 
-    virtual ~DbFactoryTests() {
+    ~DbFactoryTests() override {
         delete database;
     }
 
-    virtual void SetUp() {
+    void SetUp() override {
     }
 
-    virtual void TearDown() {
-        delete database;
+    void TearDown() override {
+        delete(database);
     }
 };
 
@@ -55,7 +55,7 @@ TEST_F(DbFactoryTests, MISSING_SCHEMA_FILE) {
     try {
         std::string db_path = R"(../../application_root/test_missing_schema_file.db)";
         std::string schema_path = R"(../../application_root/this_does_not_exist.sql)";
-        auto database = DatabaseFactory::fetch_database(db_path, schema_path);
+        DatabaseFactory::fetch_database(db_path, schema_path);
         FAIL();
     }
     catch (const std::runtime_error &e) {

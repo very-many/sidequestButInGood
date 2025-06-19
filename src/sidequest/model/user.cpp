@@ -1,17 +1,14 @@
 #include "user.h"
 
+#include <utility>
+
 namespace Sidequest {
-    User::User() {
+    User::User(const Id id) : id(id) {
     }
 
-    User::User(std::string email)
-        : email(email) {
+    User::User(const std::string& display_name, const std::string& email, const std::string& password)
+        : display_name(display_name), email(email), password(password) {
     }
 
-    User::User(std::string email, std::string display_name, std::string password)
-        : email(email), display_name(display_name), password(password) {
-    }
-
-    User::~User() {
-    }
+    User::~User() = default;
 }

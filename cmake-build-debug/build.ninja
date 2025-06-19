@@ -211,13 +211,6 @@ build bin/server.exe: CXX_EXECUTABLE_LINKER__server_Debug CMakeFiles/server.dir/
 
 build cmake_object_order_depends_target_unit_tests: phony || bin/server.exe cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main cmake_object_order_depends_target_server_lib cmake_object_order_depends_target_sidequest_lib
 
-build CMakeFiles/unit_tests.dir/src/unit_tests/crud_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/crud_test.cpp || cmake_object_order_depends_target_unit_tests
-  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\crud_test.cpp.obj.d
-  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
-  OBJECT_DIR = CMakeFiles\unit_tests.dir
-  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
-
 build CMakeFiles/unit_tests.dir/src/unit_tests/db_factory_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/db_factory_test.cpp || cmake_object_order_depends_target_unit_tests
   DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\db_factory_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
@@ -225,8 +218,36 @@ build CMakeFiles/unit_tests.dir/src/unit_tests/db_factory_test.cpp.obj: CXX_COMP
   OBJECT_DIR = CMakeFiles\unit_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
 
-build CMakeFiles/unit_tests.dir/src/unit_tests/query_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/query_test.cpp || cmake_object_order_depends_target_unit_tests
-  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\query_test.cpp.obj.d
+build CMakeFiles/unit_tests.dir/src/unit_tests/query_iterator_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/query_iterator_test.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\query_iterator_test.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/quest_crud_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/quest_crud_test.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\quest_crud_test.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/quest_subquest_loading_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/quest_subquest_loading_test.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\quest_subquest_loading_test.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/user_crud_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/user_crud_test.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\user_crud_test.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/user_quest_loading_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/user_quest_loading_test.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\user_quest_loading_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles\unit_tests.dir
@@ -240,7 +261,7 @@ build CMakeFiles/unit_tests.dir/src/unit_tests/query_test.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the executable bin\unit_tests.exe
 
-build bin/unit_tests.exe unit_tests[1]_tests.cmake | ${cmake_ninja_workdir}unit_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__unit_tests_Debug CMakeFiles/unit_tests.dir/src/unit_tests/crud_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/db_factory_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/query_test.cpp.obj | lib/libgtest_main.a bin/libsidequest_lib.a bin/libserver_lib.a lib/libgtest.a bin/libsidequest_lib.a || bin/libserver_lib.a bin/libsidequest_lib.a bin/server.exe lib/libgtest.a lib/libgtest_main.a
+build bin/unit_tests.exe unit_tests[1]_tests.cmake | ${cmake_ninja_workdir}unit_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__unit_tests_Debug CMakeFiles/unit_tests.dir/src/unit_tests/db_factory_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/query_iterator_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/quest_crud_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/quest_subquest_loading_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/user_crud_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/user_quest_loading_test.cpp.obj | lib/libgtest_main.a bin/libsidequest_lib.a bin/libserver_lib.a lib/libgtest.a bin/libsidequest_lib.a || bin/libserver_lib.a bin/libsidequest_lib.a bin/server.exe lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest_main.a  bin/libsidequest_lib.a  bin/libserver_lib.a  -lsqlite3  lib/libgtest.a  bin/libsidequest_lib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies

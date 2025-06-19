@@ -1,23 +1,22 @@
 #pragma once
 
 #include <string>
-#include <vector>
 
 #include <model/user.h>
 #include <storage/persistable.h>
 
 namespace Sidequest::Server {
+    class Query;
+
     class ServerUser : public Sidequest::User, public Persistable {
     public:
         typedef unsigned long Id;
 
-        ServerUser(Database *database);
+        ServerUser(Database*, Id);
 
-        ServerUser(Database *database, std::string email);
+        ServerUser(Database*, const std::string&, const std::string&, const std::string&);
 
-        ServerUser(Database *database, std::string email, std::string display_name, std::string password);
-
-        ~ServerUser();
+        ~ServerUser() override;
 
         void create_on_database() override;
 
@@ -28,5 +27,9 @@ namespace Sidequest::Server {
         void delete_on_database() override;
 
         std::string class_id() override;
+
+        void bind_all_params(Query query) const;
+
+        void load_owned_main_quests_from_db();
     };
 }

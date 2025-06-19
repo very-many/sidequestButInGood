@@ -1,25 +1,24 @@
 #include "database_factory.h"
+#include "database.h"
+
 #include <fstream>
 #include <sstream>
-#include <algorithm>
-
-#include <io.h>
 #include <iostream>
+#include <algorithm>
+#include <io.h>
 
 namespace Sidequest::Server {
 
-    //TODO: change string type
     Database * DatabaseFactory::fetch_database(std::string &database_path, std::string &schema_path) {
         if (std::ifstream(database_path).is_open())
             return new Database(database_path);
 
-        std::ifstream schema_file = attempt_open_filepath_as_stream(schema_path);
+        std::ifstream schema_file = try_open_filestream(schema_path);
 
-        std::ofstream db_file(database_path);
+        std::ofstream db_file(database_path); //create file
         auto database = new Database(database_path);
 
-        auto schema = file_to_string(schema_file);
-        schema.erase(std::remove(schema.begin(), schema.end(), '\n'), schema.end());
+        auto schema = open_schema_file(schema_file);
 
         apply_schema(*database, schema);
         return database;
@@ -27,29 +26,32 @@ namespace Sidequest::Server {
 
     Database * DatabaseFactory::reset_database(std::string &database_path, std::string &schema_path) {
         std::remove(database_path.c_str());
+        if (std::ifstream{database_path}.is_open())
+            throw std::runtime_error("Error deleting file");
         return fetch_database(database_path, schema_path);
     }
 
-    std::string DatabaseFactory::file_to_string(std::ifstream &schema_file) {
+    std::string DatabaseFactory::open_schema_file(std::ifstream &schema_file) {
         schema_file.clear();
         schema_file.seekg(0, std::ios::beg);
 
         std::ostringstream oss;
         oss << schema_file.rdbuf();
-        return oss.str();
+        auto schema = oss.str();
+        schema.erase(std::remove(schema.begin(), schema.end(), '\n'), schema.end());
+        return  schema;
     }
 
-    std::ifstream DatabaseFactory::attempt_open_filepath_as_stream(const std::string &path) {
-        std::ifstream filecontent_as_stream(path);
-        if (!filecontent_as_stream.is_open())
-            throw std::runtime_error("Unable to open schema file");
-        return filecontent_as_stream;
+    std::ifstream DatabaseFactory::try_open_filestream(const std::string &path) {
+        std::ifstream file_stream(path);
+        if (!file_stream.is_open())
+            throw std::runtime_error("Unable to open file");
+        return file_stream;
     }
 
-    void DatabaseFactory::apply_schema(Database& database, std::string &schema) {
-        int code = database.execute(schema);
-        if (code != SQLITE_OK) {
-            throw std::runtime_error("Unable to apply schema " + schema + " " + sqlite3_errstr(code));
-        }
+    void DatabaseFactory::apply_schema(const Database& database, const std::string &schema) {
+        int status_code = database.execute(schema);
+        if (status_code != SQLITE_OK)
+            throw std::runtime_error("Unable to apply schema " + schema + "\nSqlite Error code: " + sqlite3_errstr(status_code));
     }
 }

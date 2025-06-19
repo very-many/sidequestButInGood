@@ -9,6 +9,5 @@ namespace Sidequest::Server {
         this->database = database;
     }
 
-    Persistable::~Persistable() {
-    }
+    Persistable::~Persistable() = default;
 }

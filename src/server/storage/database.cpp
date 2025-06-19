@@ -3,7 +3,6 @@
 #include "statement_cache.h"
 #include "column_cache.h"
 
-
 namespace Sidequest::Server {
     DatabaseNotFoundException::DatabaseNotFoundException(const std::string &message)
         : std::runtime_error(message) {
@@ -58,5 +57,9 @@ namespace Sidequest::Server {
 
     int Database::execute(const std::string &sql_statement) const {
         return sqlite3_exec(handle, sql_statement.c_str(), nullptr, nullptr, nullptr);
+    }
+
+    sqlite3 * Database::getHandle() const {
+        return handle;
     }
 }

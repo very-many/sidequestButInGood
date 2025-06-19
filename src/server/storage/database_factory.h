@@ -1,9 +1,10 @@
 #ifndef DATABASE_CREATOR_H
 #define DATABASE_CREATOR_H
 #include <string>
-#include "database.h"
 
 namespace Sidequest::Server {
+    class Database;
+
     class DatabaseFactory {
     public:
 
@@ -12,9 +13,9 @@ namespace Sidequest::Server {
 
     private:
 
-        static std::string file_to_string(std::ifstream &);
-        static std::ifstream attempt_open_filepath_as_stream(const std::string &);
-        static void apply_schema(Database & database, std::string & string);
+        static std::string open_schema_file(std::ifstream &);
+        static std::ifstream try_open_filestream(const std::string &);
+        static void apply_schema(const Database & database, const std::string & string);
 
     };
 };

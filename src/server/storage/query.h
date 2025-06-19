@@ -1,9 +1,12 @@
 #ifndef QUERY_H
 #define QUERY_H
-#include "database.h"
 #include "statement_cache.h"
+#include "model/quest.h"
 
 namespace Sidequest::Server {
+    class Database;
+    class ServerQuest;
+
     class Query {
     public:
         Query(Database *database, const std::string &statement_sql);
@@ -12,17 +15,21 @@ namespace Sidequest::Server {
 
         void bind(int parameter_index, const std::string &value);
 
-        void bind(int parameter_index, unsigned int value);
+        void bind(int parameter_index, long value);
+
+        void bind_null(int parameter_index);
 
         void execute();
 
-        [[nodiscard]] int read_int_value(const std::string &column_name) const;
+        [[nodiscard]] long read_integer_value(const std::string &column_name) const;
 
         [[nodiscard]] std::string read_text_value(const std::string &column_name) const;
 
         [[nodiscard]] bool has_row() const;
 
         [[nodiscard]] bool is_done() const;
+
+        [[nodiscard]] Quest::Id last_row_id() const;
 
         class Iterator {
         public:
@@ -42,15 +49,11 @@ namespace Sidequest::Server {
         Iterator end();
 
     private:
-        Database *database = nullptr;
-        PreparedStatement *prepared_statement = nullptr;
-        int status_code = 0;
-
-        [[nodiscard]] PreparedStatement *prepare(const std::string &statement_sql) const;
+        Database *database;
+        PreparedStatement *prepared_statement;
+        int status_code = -1;
 
         [[nodiscard]] bool is_ok() const;
-
-        void reset_statement() const;
     };
 };
 

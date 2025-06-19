@@ -69,7 +69,10 @@ add_executable(
         unit_tests
         ${TEST_SOURCES}
         src/unit_tests/db_factory_test.cpp
-        src/unit_tests/query_test.cpp
+        src/unit_tests/query_iterator_test.cpp
+        src/unit_tests/quest_crud_test.cpp
+        src/unit_tests/quest_subquest_loading_test.cpp
+        src/unit_tests/user_quest_loading_test.cpp
 )
 target_link_libraries(
         unit_tests

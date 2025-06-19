@@ -4,25 +4,28 @@
 #include <vector>
 
 namespace Sidequest {
+    class User;
+
     class Quest {
     public:
         typedef unsigned long Id;
 
         Quest();
+        explicit Quest(Id id);
+        Quest(std::string name, std::string description, Quest* parent, User* owner, User* editor);
 
-        Quest(Id id);
+        virtual ~Quest();
 
-        ~Quest();
+        void add_subQuest(Quest* quest);
 
-        Id id;
-        std::string caption;
-        Quest *parent;
-        std::vector<Quest *> subquests;
+        Id id = 0;
+        std::string name;
+        std::string description;
+        Quest* parent = nullptr;
 
-        //TODO: other fields???
-        // - Owner
-        // - Editor
-        // - description
+        User* owner = nullptr;
+        User* editor = nullptr;
 
+        std::vector<Quest *> subQuests;
     };
 }

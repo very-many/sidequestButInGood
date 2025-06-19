@@ -45,15 +45,16 @@ namespace Sidequest::Server {
 
     class Database {
     public:
-        Database(const std::string &filepath_of_database);
+        explicit Database(const std::string &filepath_of_database);
 
         ~Database();
 
         StatementCache *statement_cache;
         ColumnCache *column_cache;
 
-        int execute(const std::string &sql_statement) const;
+        [[nodiscard]] int execute(const std::string &sql_statement) const;
 
+        [[nodiscard]] sqlite3* getHandle() const;
 
     protected:
         void open(const std::string &filepath_of_database);
