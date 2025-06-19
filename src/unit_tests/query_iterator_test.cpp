@@ -45,4 +45,5 @@ TEST_F(QUERYTest, QUERY_ITERATOR) {
         EXPECT_EQ(display_name, "temp User" + std::to_string(count));
         count++;
     }
+
 }

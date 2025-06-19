@@ -7,13 +7,17 @@
 #include "storage/database.h"
 
 namespace Sidequest::Server {
-
-    ServerQuest::ServerQuest(Database *database, const Id id) : Quest(id), Persistable(database) {
+    ServerQuest::ServerQuest(Database* database, const Id id) : Quest(id), Persistable(database) {
     }
 
-    ServerQuest::ServerQuest(Database *database, const std::string& name, const std::string& description, Quest *parent, User *owner,
-        User *editor)
-            : Quest(name, description, parent, owner, editor), Persistable(database){
+    ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent,
+                             User* owner, User* editor)
+        : Quest(name, description, parent, owner, editor), Persistable(database) {
+    }
+
+    ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description,
+                             Status status, Quest* parent, User* owner, User* editor)
+        : Quest(name, description, status, parent, owner, editor), Persistable(database) {
     }
 
     ServerQuest::~ServerQuest() = default;
@@ -21,22 +25,24 @@ namespace Sidequest::Server {
     void ServerQuest::bind_all_params(Query& query) const {
         query.bind(1, name);
         query.bind(2, description);
+        query.bind(3, Quest::status_to_string(status));
         if (parent != nullptr)
-            query.bind(3, static_cast<long>(parent->id));
-        else
-            query.bind_null(3);
-        if (owner != nullptr)
-            query.bind(4, static_cast<long>(owner->id));
+            query.bind(4, static_cast<long>(parent->id));
         else
             query.bind_null(4);
-        if (editor != nullptr)
-            query.bind(5, static_cast<long>(editor->id));
+        if (owner != nullptr)
+            query.bind(5, static_cast<long>(owner->id));
         else
             query.bind_null(5);
+        if (editor != nullptr)
+            query.bind(6, static_cast<long>(editor->id));
+        else
+            query.bind_null(6);
     }
 
     void ServerQuest::create_on_database() {
-        auto query = Query(database, "INSERT INTO quest(name, description, parent, owner, editor) VALUES (?, ?, ?, ?, ?);");
+        auto query = Query(
+            database, "INSERT INTO quest(name, description, status, parent, owner, editor) VALUES (?, ?, ?, ?, ?, ?);");
         bind_all_params(query);
         query.execute();
         if (!query.is_done())
@@ -46,7 +52,7 @@ namespace Sidequest::Server {
     }
 
     void ServerQuest::read_on_database() {
-        auto query = Query(database, "SELECT name, description, parent, owner, editor FROM quest WHERE id=?;");
+        auto query = Query(database, "SELECT name, description, status, parent, owner, editor FROM quest WHERE id=?;");
         query.bind(1, static_cast<long>(id));
         query.execute();
 
@@ -55,6 +61,7 @@ namespace Sidequest::Server {
 
         this->name = query.read_text_value("name");
         this->description = query.read_text_value("description");
+        this->status = string_to_status(query.read_text_value("status"));
         const auto parent_id = query.read_integer_value("parent");
         this->parent = parent_id != 0 ? new ServerQuest(database, parent_id) : nullptr;
         const auto owner_id = query.read_integer_value("owner");
@@ -64,9 +71,10 @@ namespace Sidequest::Server {
     }
 
     void ServerQuest::update_on_database() {
-        auto query = Query(database, "UPDATE quest set name=?, description=?, parent=?, owner=?, editor=? WHERE id=?;");
+        auto query = Query(
+            database, "UPDATE quest set name=?, description=?, status=?, parent=?, owner=?, editor=? WHERE id=?;");
         bind_all_params(query);
-        query.bind(6, static_cast<long>(this->id));
+        query.bind(7, static_cast<long>(this->id));
         query.execute();
         if (!query.is_done())
             throw UnableToUpdateObjectException(std::to_string(id));
@@ -82,7 +90,8 @@ namespace Sidequest::Server {
     }
 
     void ServerQuest::load_subquests_from_db() {
-        auto query = Query(database, "SELECT id, name, description, parent, owner, editor FROM quest WHERE parent=?;");
+        auto query = Query(
+            database, "SELECT id, name, description, status, parent, owner, editor FROM quest WHERE parent=?;");
         query.bind(1, static_cast<long>(id));
 
         for (auto it = query.begin(); it != query.end(); ++it) {
@@ -90,13 +99,17 @@ namespace Sidequest::Server {
             if (t_id == 0)
                 continue;
 
+            const auto owner_id = query.read_integer_value("owner");
+            const auto editor_id = query.read_integer_value("editor");
+
             auto subQuest = new ServerQuest(
                 database,
                 query.read_text_value("name"),
                 query.read_text_value("description"),
+                string_to_status(query.read_text_value("status")),
                 this,
-                new User(query.read_integer_value("owner")),
-                new User(query.read_integer_value("editor")));
+                owner_id != 0 ? new User(owner_id) : nullptr,
+                editor_id != 0 ? new User(editor_id) : nullptr);
             subQuest->id = t_id;
             this->subQuests.emplace_back(subQuest);
         }

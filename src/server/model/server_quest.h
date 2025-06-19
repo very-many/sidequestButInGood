@@ -15,6 +15,9 @@ namespace Sidequest::Server {
         ServerQuest(Database *database, const std::string& name, const std::string& description, Quest *parent, User *owner,
                     User *editor);
 
+        ServerQuest(Database *database, const std::string& name, const std::string& description, Status status, Quest *parent, User *owner,
+                    User *editor);
+
         ~ServerQuest() override;
 
         void create_on_database() override;

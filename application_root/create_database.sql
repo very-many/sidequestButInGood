@@ -11,6 +11,7 @@ CREATE TABLE quest
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     name        TEXT,
     description TEXT,
+    status      TEXT,
     parent      INTEGER,
     owner       INTEGER,
     editor      INTEGER,
