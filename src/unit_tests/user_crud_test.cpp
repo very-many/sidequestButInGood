@@ -4,14 +4,14 @@
 #include "model/server_user.h"
 #include "storage/database_factory.h"
 
-class CRUDTests : public ::testing::Test {
+class USER_CRUD_TEST : public ::testing::Test {
 protected:
     Sidequest::Server::Database* database = nullptr;
 
-    CRUDTests() {
+    USER_CRUD_TEST() {
     }
 
-    ~CRUDTests() override = default;
+    ~USER_CRUD_TEST() override = default;
 
     void SetUp() override {
         std::string db_path = ":memory:"; //"../../application_root/crud_test.db";
@@ -26,7 +26,7 @@ protected:
 
 using namespace Sidequest::Server;
 
-TEST_F(CRUDTests, CRUD_USER_CREATE) {
+TEST_F(USER_CRUD_TEST, CRUD_USER_CREATE) {
     const auto user = new ServerUser(database, "Temporary User", "crud_user_create@hs-aalen.de", "");
     user->create_on_database();
     const auto id = user->id;
@@ -39,7 +39,7 @@ TEST_F(CRUDTests, CRUD_USER_CREATE) {
     delete(user2);
 }
 
-TEST_F(CRUDTests, CRUD_USER_READ) {
+TEST_F(USER_CRUD_TEST, CRUD_USER_READ) {
     const auto user = new ServerUser(database, "Temporary User", "crud_user_create@hs-aalen.de", "");
     user->create_on_database();
     const auto id = user->id;
@@ -51,7 +51,7 @@ TEST_F(CRUDTests, CRUD_USER_READ) {
     EXPECT_EQ(user2->display_name, "Temporary User");
 }
 
-TEST_F(CRUDTests, CRUD_USER_UPDATE) {
+TEST_F(USER_CRUD_TEST, CRUD_USER_UPDATE) {
     const auto user = new ServerUser(database, "Temporary User", "crud_user_create@hs-aalen.de", "");
     user->create_on_database();
     const auto id = user->id;
@@ -66,7 +66,7 @@ TEST_F(CRUDTests, CRUD_USER_UPDATE) {
     delete(user2);
 }
 
-TEST_F(CRUDTests, CRUD_USER_DELETE) {
+TEST_F(USER_CRUD_TEST, CRUD_USER_DELETE) {
     const auto user = new ServerUser(database, "Temporary User", "crud_user_create@hs-aalen.de", "");
     user->create_on_database();
     const auto id = user->id;

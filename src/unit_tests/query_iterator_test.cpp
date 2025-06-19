@@ -5,13 +5,13 @@
 #include "storage/database_factory.h"
 #include "storage/query.h"
 
-class QUERYTest : public ::testing::Test {
+class QUERY_ITERATOR_Test : public ::testing::Test {
 protected:
     Sidequest::Server::Database *database = nullptr;
 
-    QUERYTest() {}
+    QUERY_ITERATOR_Test() {}
 
-    ~QUERYTest() override = default;
+    ~QUERY_ITERATOR_Test() override = default;
 
     void SetUp() override {
         // std::string db_path = "../../application_root/crud_test.db";
@@ -36,7 +36,7 @@ protected:
 
 using namespace Sidequest::Server;
 
-TEST_F(QUERYTest, QUERY_ITERATOR) {
+TEST_F(QUERY_ITERATOR_Test, QUERY_ITERATOR) {
     auto query = Query(database, "SELECT * FROM user;");
     int count = 1;
 

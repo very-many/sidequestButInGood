@@ -6,16 +6,16 @@
 #include "storage/database_factory.h"
 #include "storage/query.h"
 
-class QUESTTest : public ::testing::Test {
+class QUEST_TEST : public ::testing::Test {
 protected:
     Sidequest::Server::Database* database = nullptr;
     Sidequest::Server::ServerQuest::Id parent_id = 0;
     std::vector<Sidequest::Quest*> quests = {};
 
-    QUESTTest() {
+    QUEST_TEST() {
     }
 
-    ~QUESTTest() override {
+    ~QUEST_TEST() override {
         for (const auto quest : quests)
             delete quest;
     }
@@ -76,7 +76,7 @@ private:
 
 using namespace Sidequest::Server;
 
-TEST_F(QUESTTest, QUEST_LOAD_CHILDREN) {
+TEST_F(QUEST_TEST, QUEST_LOAD_CHILDREN) {
     const auto parent_quest = new ServerQuest(database, parent_id);
     parent_quest->read_on_database();
     parent_quest->load_subquests_from_db();
@@ -96,7 +96,7 @@ TEST_F(QUESTTest, QUEST_LOAD_CHILDREN) {
     }
 }
 
-TEST_F(QUESTTest, QUEST_LOAD_CHILDREN_RECURSIVE) {
+TEST_F(QUEST_TEST, QUEST_LOAD_CHILDREN_RECURSIVE) {
     auto parent_quest = new ServerQuest(database, parent_id);
     parent_quest->read_on_database();
     parent_quest->load_subquests_recursive_from_db();

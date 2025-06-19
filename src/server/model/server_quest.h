@@ -5,11 +5,13 @@
 #include "storage/persistable.h"
 #include "storage/query.h"
 
-class QUESTTest;
-
 namespace Sidequest::Server {
     class ServerQuest : public Quest, public Persistable {
     public:
+        std::optional<Id> parent_id;
+        std::optional<Id> owner_id;
+        std::optional<Id> editor_id;
+
         ServerQuest(Database* database, Id id);
 
         ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent,
@@ -23,11 +25,8 @@ namespace Sidequest::Server {
         ~ServerQuest() override;
 
         void create_on_database() override;
-
         void read_on_database() override;
-
         void update_on_database() override;
-
         void delete_on_database() override;
 
         void load_subquests_from_db();
@@ -36,13 +35,7 @@ namespace Sidequest::Server {
         std::string class_id() override;
 
     private:
-        std::optional<Id> parent_id;
-        std::optional<Id> owner_id;
-        std::optional<Id> editor_id;
-
         void bind_all_params(Query& query) const;
-
-        friend QUESTTest;
     };
 }
 

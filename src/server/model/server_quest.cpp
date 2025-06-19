@@ -13,11 +13,23 @@ namespace Sidequest::Server {
     ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent,
                              User* owner, User* editor)
         : Quest(name, description, parent, owner, editor), Persistable(database) {
+        if (parent != nullptr)
+            this->parent_id = parent->id;
+        if (owner != nullptr)
+            this->owner_id = owner->id;
+        if (editor != nullptr)
+            this->editor_id = editor->id;
     }
 
     ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description,
                              Status status, Quest* parent, User* owner, User* editor)
         : Quest(name, description, status, parent, owner, editor), Persistable(database) {
+        if (parent != nullptr)
+            this->parent_id = parent->id;
+        if (owner != nullptr)
+            this->owner_id = owner->id;
+        if (editor != nullptr)
+            this->editor_id = editor->id;
     }
 
     ServerQuest::~ServerQuest() = default;
