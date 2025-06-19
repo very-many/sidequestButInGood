@@ -36,6 +36,6 @@ namespace Sidequest {
         User* owner = nullptr;
         User* editor = nullptr;
 
-        std::vector<Quest *> subQuests;
+        std::vector<Quest *> subquests;
     };
 }

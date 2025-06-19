@@ -1,6 +1,8 @@
 #include "query.h"
 
 #include <iostream>
+#include <optional>
+#include <bits/locale_facets_nonio.h>
 
 #include "column_cache.h"
 #include "database.h"
@@ -47,6 +49,13 @@ namespace Sidequest::Server {
         const int column_index = database->column_cache->get_column_index(prepared_statement, column_name);
         const auto col_value = sqlite3_column_int64(prepared_statement, column_index);
         return static_cast<long>(col_value);
+    }
+
+    std::optional<long> Query::read_optional_integer_value(const std::string &column_name) const {
+        const int column_index = database->column_cache->get_column_index(prepared_statement, column_name);
+        if (sqlite3_column_type(prepared_statement, column_index) == SQLITE_NULL)
+            return std::nullopt;
+        return sqlite3_column_int64(prepared_statement, column_index);
     }
 
     std::string Query::read_text_value(const std::string &column_name) const {

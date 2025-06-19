@@ -62,12 +62,15 @@ namespace Sidequest::Server {
         this->name = query.read_text_value("name");
         this->description = query.read_text_value("description");
         this->status = string_to_status(query.read_text_value("status"));
-        const auto parent_id = query.read_integer_value("parent");
-        this->parent = parent_id != 0 ? new ServerQuest(database, parent_id) : nullptr;
-        const auto owner_id = query.read_integer_value("owner");
-        this->owner = owner_id != 0 ? new User(owner_id) : nullptr;
-        const auto editor_id = query.read_integer_value("editor");
-        this->editor = editor_id != 0 ? new User(editor_id) : nullptr;
+        this->parent_id = query.read_optional_integer_value("parent");
+        this->owner_id = query.read_optional_integer_value("owner");
+        this->editor_id = query.read_optional_integer_value("editor");
+        // const auto parent_id = query.read_integer_value("parent");
+        // this->parent = parent_id != 0 ? new ServerQuest(database, parent_id) : nullptr;
+        // const auto owner_id = query.read_integer_value("owner");
+        // this->owner = owner_id != 0 ? new User(owner_id) : nullptr;
+        // const auto editor_id = query.read_integer_value("editor");
+        // this->editor = editor_id != 0 ? new User(editor_id) : nullptr;
     }
 
     void ServerQuest::update_on_database() {
@@ -99,28 +102,28 @@ namespace Sidequest::Server {
             if (t_id == 0)
                 continue;
 
-            const auto owner_id = query.read_integer_value("owner");
-            const auto editor_id = query.read_integer_value("editor");
-
             auto subQuest = new ServerQuest(
                 database,
                 query.read_text_value("name"),
                 query.read_text_value("description"),
                 string_to_status(query.read_text_value("status")),
                 this,
-                owner_id != 0 ? new User(owner_id) : nullptr,
-                editor_id != 0 ? new User(editor_id) : nullptr);
+                nullptr,
+                nullptr);
             subQuest->id = t_id;
-            this->subQuests.emplace_back(subQuest);
+            subQuest->parent_id = this->id;
+            subQuest->owner_id = query.read_optional_integer_value("owner");
+            subQuest->editor_id = query.read_optional_integer_value("editor");
+            this->subquests.emplace_back(subQuest);
         }
     }
 
     void ServerQuest::load_subquests_recursive_from_db() {
         load_subquests_from_db();
-        if (subQuests.empty())
+        if (subquests.empty())
             return;
 
-        for (const auto quest : this->subQuests)
+        for (const auto quest : this->subquests)
             if (auto* server_quest = dynamic_cast<ServerQuest*>(quest))
                 server_quest->load_subquests_recursive_from_db();
     }

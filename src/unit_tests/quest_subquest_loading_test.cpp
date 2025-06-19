@@ -42,8 +42,8 @@ protected:
 
     static void all_quests_as_list(Sidequest::Quest* quest, std::vector<Sidequest::Quest*>& out_list) {
         out_list.push_back(quest);
-        sort_quest_list(quest->subQuests);
-        for (auto* subQ : quest->subQuests)
+        sort_quest_list(quest->subquests);
+        for (auto* subQ : quest->subquests)
             all_quests_as_list(subQ, out_list);
     }
 
@@ -81,12 +81,12 @@ TEST_F(QUESTTest, QUEST_LOAD_CHILDREN) {
     parent_quest->read_on_database();
     parent_quest->load_subquests_from_db();
 
-    EXPECT_EQ(parent_quest->subQuests.size(), 2);
+    EXPECT_EQ(parent_quest->subquests.size(), 2);
 
-    sort_quest_list(parent_quest->subQuests);
+    sort_quest_list(parent_quest->subquests);
 
     int count = 1;
-    for (const auto subquest : parent_quest->subQuests) {
+    for (const auto subquest : parent_quest->subquests) {
         EXPECT_EQ(subquest->parent->id, this->parent_id);
         auto expect_name = std::string{"s" + std::to_string(count)};
         EXPECT_EQ(subquest->name, expect_name);
@@ -101,7 +101,7 @@ TEST_F(QUESTTest, QUEST_LOAD_CHILDREN_RECURSIVE) {
     parent_quest->read_on_database();
     parent_quest->load_subquests_recursive_from_db();
 
-    EXPECT_EQ(parent_quest->subQuests.size(), 2);
+    EXPECT_EQ(parent_quest->subquests.size(), 2);
 
     std::vector<Sidequest::Quest*> allQ;
     all_quests_as_list(parent_quest, allQ);

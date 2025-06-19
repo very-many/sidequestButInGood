@@ -10,13 +10,15 @@ class QUESTTest;
 namespace Sidequest::Server {
     class ServerQuest : public Quest, public Persistable {
     public:
-        ServerQuest(Database *database, Id id);
+        ServerQuest(Database* database, Id id);
 
-        ServerQuest(Database *database, const std::string& name, const std::string& description, Quest *parent, User *owner,
-                    User *editor);
+        ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent,
+                    User* owner,
+                    User* editor);
 
-        ServerQuest(Database *database, const std::string& name, const std::string& description, Status status, Quest *parent, User *owner,
-                    User *editor);
+        ServerQuest(Database* database, const std::string& name, const std::string& description, Status status,
+                    Quest* parent, User* owner,
+                    User* editor);
 
         ~ServerQuest() override;
 
@@ -34,7 +36,11 @@ namespace Sidequest::Server {
         std::string class_id() override;
 
     private:
-        void bind_all_params(Query &query) const;
+        std::optional<Id> parent_id;
+        std::optional<Id> owner_id;
+        std::optional<Id> editor_id;
+
+        void bind_all_params(Query& query) const;
 
         friend QUESTTest;
     };

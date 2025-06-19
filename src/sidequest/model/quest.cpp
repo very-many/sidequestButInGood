@@ -21,7 +21,7 @@ namespace Sidequest {
     }
 
     Quest::~Quest() {
-        for (const auto subQuest : subQuests)
+        for (const auto subQuest : subquests)
             delete(subQuest);
     }
 
@@ -46,6 +46,6 @@ namespace Sidequest {
     }
 
     void Quest::add_subQuest(Quest* quest) {
-        subQuests.push_back(quest);
+        subquests.push_back(quest);
     }
 }
