@@ -1,10 +1,5 @@
 # Sidequest (But in good)
 
-Obviously viel bessere Implementierung der Software Sidequest.
+Obviously viel bessere Implementierung der Software Sidequest. /s
 
 ---
-
-Figma ist super
-
-sqlite3.figmalize()
-

@@ -14,13 +14,11 @@ namespace Sidequest::Server {
 
         ServerQuest(Database* database, Id id);
 
-        ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent,
-                    User* owner,
-                    User* editor);
+        ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent = nullptr,
+                    User* owner = nullptr, User* editor = nullptr);
 
         ServerQuest(Database* database, const std::string& name, const std::string& description, Status status,
-                    Quest* parent, User* owner,
-                    User* editor);
+                    Quest* parent = nullptr, User* owner = nullptr, User* editor = nullptr);
 
         ~ServerQuest() override;
 
@@ -38,5 +36,4 @@ namespace Sidequest::Server {
         void bind_all_params(Query& query) const;
     };
 }
-
 #endif //SERVER_QUEST_H

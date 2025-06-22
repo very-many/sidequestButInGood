@@ -15,7 +15,6 @@ namespace Sidequest::Server {
 
         ~Query();
 
-
         void bind(int parameter_index, const std::string& value);
         void bind(int parameter_index, long value);
         void bind(int parameter_index, const std::optional<long>& value);

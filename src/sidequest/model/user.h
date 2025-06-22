@@ -11,7 +11,8 @@ namespace Sidequest {
         typedef unsigned long Id;
         explicit User(Id);
 
-        User(const std::string&, const std::string&, const std::string&);
+        User(const std::string& display_name, const std::string& email, const std::string& password);
+        User(std::string&& display_name, std::string&& email, std::string&& password);
 
         virtual ~User();
 

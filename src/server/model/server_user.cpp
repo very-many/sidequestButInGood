@@ -13,6 +13,10 @@ namespace Sidequest::Server {
         : User(display_name, email, password), Persistable(database) {
     }
 
+    ServerUser::ServerUser(Database* database, std::string&& display_name, std::string&& email, std::string&& password)
+        : User(display_name, email, password), Persistable(database) {
+    }
+
     ServerUser::~ServerUser() = default;
 
     void ServerUser::bind_all_params(Query query) const {

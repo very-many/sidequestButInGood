@@ -3,8 +3,8 @@
 #include <optional>
 #include <string>
 
-#include <model/user.h>
-#include <storage/persistable.h>
+#include "model/user.h"
+#include "storage/persistable.h"
 
 namespace Sidequest::Server {
     class Query;
@@ -13,9 +13,11 @@ namespace Sidequest::Server {
     public:
         typedef unsigned long Id;
 
-        ServerUser(Database*, Id);
+        ServerUser(Database*, Id id);
 
-        ServerUser(Database*, const std::string&, const std::string&, const std::string&);
+        ServerUser(Database* database, const std::string& display_name, const std::string& email, const std::string& password);
+
+        ServerUser(Database* database, std::string&& display_name, std::string&& email, std::string&& password);
 
         ~ServerUser() override;
 

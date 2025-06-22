@@ -54,7 +54,7 @@ TEST_F(QUEST_CRUD_Tests, CRUD_QUEST_CREATE) {
 TEST_F(QUEST_CRUD_Tests, CRUD_QUEST_NULL_CREATE) {
     using Sidequest::User;
     using Sidequest::Quest;
-    const auto quest = new ServerQuest(database, "quest1", "first quest", nullptr, nullptr, nullptr);
+    const auto quest = new ServerQuest(database, "quest1", "first quest");
     quest->create_on_database();
     const auto id = quest->id;
     delete(quest);

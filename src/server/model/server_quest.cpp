@@ -77,12 +77,6 @@ namespace Sidequest::Server {
         this->parent_id = query.read_optional_integer_value("parent");
         this->owner_id = query.read_optional_integer_value("owner");
         this->editor_id = query.read_optional_integer_value("editor");
-        // const auto parent_id = query.read_integer_value("parent");
-        // this->parent = parent_id != 0 ? new ServerQuest(database, parent_id) : nullptr;
-        // const auto owner_id = query.read_integer_value("owner");
-        // this->owner = owner_id != 0 ? new User(owner_id) : nullptr;
-        // const auto editor_id = query.read_integer_value("editor");
-        // this->editor = editor_id != 0 ? new User(editor_id) : nullptr;
     }
 
     void ServerQuest::update_on_database() {
@@ -110,7 +104,7 @@ namespace Sidequest::Server {
         query.bind(1, static_cast<long>(id));
 
         for (auto it = query.begin(); it != query.end(); ++it) {
-            auto t_id = query.read_integer_value("id");
+            const auto t_id = query.read_integer_value("id");
             if (t_id == 0)
                 continue;
 
