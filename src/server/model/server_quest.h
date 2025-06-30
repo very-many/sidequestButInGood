@@ -8,9 +8,6 @@
 namespace Sidequest::Server {
     class ServerQuest : public Quest, public Persistable {
     public:
-        std::optional<Id> parent_id;
-        std::optional<Id> owner_id;
-        std::optional<Id> editor_id;
 
         ServerQuest(Database* database, Id id);
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -32,10 +33,11 @@ namespace Sidequest {
         std::string description;
         Status status = initial;
         Quest* parent = nullptr;
-
         User* owner = nullptr;
         User* editor = nullptr;
-
+        std::optional<Id> parent_id;
+        std::optional<Id> owner_id;
+        std::optional<Id> editor_id;
         std::vector<Quest *> subquests;
     };
 }

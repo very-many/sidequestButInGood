@@ -1,6 +1,5 @@
 #ifndef QUERY_H
 #define QUERY_H
-#include <optional>
 
 #include "statement_cache.h"
 #include "model/quest.h"
@@ -12,9 +11,7 @@ namespace Sidequest::Server {
     class Query {
     public:
         Query(Database* database, const std::string& statement_sql);
-
         ~Query();
-
 
         void bind(int parameter_index, const std::string& value);
         void bind(int parameter_index, long value);

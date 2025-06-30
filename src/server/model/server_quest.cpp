@@ -13,23 +13,13 @@ namespace Sidequest::Server {
     ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent,
                              User* owner, User* editor)
         : Quest(name, description, parent, owner, editor), Persistable(database) {
-        if (parent != nullptr)
-            this->parent_id = parent->id;
-        if (owner != nullptr)
-            this->owner_id = owner->id;
-        if (editor != nullptr)
-            this->editor_id = editor->id;
+
     }
 
     ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description,
                              Status status, Quest* parent, User* owner, User* editor)
         : Quest(name, description, status, parent, owner, editor), Persistable(database) {
-        if (parent != nullptr)
-            this->parent_id = parent->id;
-        if (owner != nullptr)
-            this->owner_id = owner->id;
-        if (editor != nullptr)
-            this->editor_id = editor->id;
+
     }
 
     ServerQuest::~ServerQuest() = default;
@@ -37,19 +27,10 @@ namespace Sidequest::Server {
     void ServerQuest::bind_all_params(Query& query) const {
         query.bind(1, name);
         query.bind(2, description);
-        query.bind(3, Quest::status_to_string(status));
-        if (parent != nullptr)
-            query.bind(4, static_cast<long>(parent->id));
-        else
-            query.bind_null(4);
-        if (owner != nullptr)
-            query.bind(5, static_cast<long>(owner->id));
-        else
-            query.bind_null(5);
-        if (editor != nullptr)
-            query.bind(6, static_cast<long>(editor->id));
-        else
-            query.bind_null(6);
+        query.bind(3, status_to_string(status));
+        query.bind(4, parent_id);
+        query.bind(5, owner_id);
+        query.bind(6, editor_id);
     }
 
     void ServerQuest::create_on_database() {
@@ -77,12 +58,6 @@ namespace Sidequest::Server {
         this->parent_id = query.read_optional_integer_value("parent");
         this->owner_id = query.read_optional_integer_value("owner");
         this->editor_id = query.read_optional_integer_value("editor");
-        // const auto parent_id = query.read_integer_value("parent");
-        // this->parent = parent_id != 0 ? new ServerQuest(database, parent_id) : nullptr;
-        // const auto owner_id = query.read_integer_value("owner");
-        // this->owner = owner_id != 0 ? new User(owner_id) : nullptr;
-        // const auto editor_id = query.read_integer_value("editor");
-        // this->editor = editor_id != 0 ? new User(editor_id) : nullptr;
     }
 
     void ServerQuest::update_on_database() {
