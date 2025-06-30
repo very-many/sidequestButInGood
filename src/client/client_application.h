@@ -4,28 +4,22 @@
 
 #include "httplib.h"
 
-namespace Sidequest
-{
-	namespace Client
-	{
-		typedef httplib::Request Request;
-		typedef httplib::Response Response;
+namespace Sidequest::Client {
+    typedef httplib::Request Request;
+    typedef httplib::Response Response;
 
-		class Stubs;
+    class Stubs;
 
-		class ClientApplication
-		{
-		public:
-			ClientApplication( std::string hostname, int port );
-			virtual ~ClientApplication();
+    class ClientApplication {
+    public:
+        ClientApplication(const std::string& hostname, int port);
+        virtual ~ClientApplication();
 
-			virtual Stubs* stubs();
-			httplib::Client& http_connection();
+        virtual Stubs* stubs();
+        httplib::Client& http_connection();
 
-		protected:
-			Stubs* _stubs = nullptr;
-			httplib::Client _http_client;
-		};
-
-	}
+    protected:
+        Stubs* _stubs = nullptr;
+        httplib::Client _http_client;
+    };
 }

@@ -5,16 +5,20 @@
 #include "storage/query.h"
 
 namespace Sidequest::Server {
-    ServerUser::ServerUser(Database* database, Id id) : User(id), Persistable(database) {
+    ServerUser::ServerUser(Database* database, Id id) : SerialisableUser(id), Persistable(database) {
+    }
+
+    ServerUser::ServerUser(Database* database)
+        : Persistable(database) {
     }
 
     ServerUser::ServerUser(Database* database, const std::string& display_name, const std::string& email,
                            const std::string& password)
-        : User(display_name, email, password), Persistable(database) {
+        : SerialisableUser(display_name, email, password), Persistable(database) {
     }
 
     ServerUser::ServerUser(Database* database, std::string&& display_name, std::string&& email, std::string&& password)
-        : User(display_name, email, password), Persistable(database) {
+        : SerialisableUser(display_name, email, password), Persistable(database) {
     }
 
     ServerUser::~ServerUser() = default;
@@ -44,6 +48,7 @@ namespace Sidequest::Server {
             throw UnableToReadObjectException(email);
 
         display_name = query.read_text_value("display_name");
+        email = query.read_text_value("email");
         password = query.read_text_value("password");
     }
 
@@ -67,7 +72,7 @@ namespace Sidequest::Server {
     }
 
     void ServerUser::load_owned_main_quests_from_db() {
-        auto query = Query(database, "SELECT name, description, parent, owner, editor FROM quest WHERE owner=? and parent IS NULL;");
+        auto query = Query(database, "SELECT title, description, parent, owner, editor FROM quest WHERE owner=? and parent IS NULL;");
         query.bind(1, static_cast<long>(id));
 
         for (auto it = query.begin(); it != query.end(); ++it) {

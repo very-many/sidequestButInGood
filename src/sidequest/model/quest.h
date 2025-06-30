@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -17,9 +18,8 @@ namespace Sidequest {
 
         Quest();
         explicit Quest(Id id);
-        Quest(std::string name, std::string description, Quest* parent, User* owner, User* editor);
-        Quest(std::string name, std::string description, Status status, Quest* parent, User* owner, User* editor);
-
+        Quest(std::string title, std::string description, Quest* parent, User* owner, User* editor);
+        Quest(std::string title, std::string description, Status status, Quest* parent, User* owner, User* editor);
         virtual ~Quest();
 
         static std::string status_to_string(Status status);
@@ -28,14 +28,18 @@ namespace Sidequest {
         void add_subQuest(Quest* quest);
 
         Id id = 0;
-        std::string name;
+        std::string title;
         std::string description;
         Status status = initial;
+        std::vector<Quest *> subquests;
+
+        std::optional<Id> parent_id;
         Quest* parent = nullptr;
 
+        std::optional<Id> owner_id;
         User* owner = nullptr;
-        User* editor = nullptr;
 
-        std::vector<Quest *> subquests;
+        std::optional<Id> editor_id;
+        User* editor = nullptr;
     };
 }

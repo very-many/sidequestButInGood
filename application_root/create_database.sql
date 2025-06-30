@@ -9,7 +9,7 @@ CREATE TABLE user
 CREATE TABLE quest
 (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    name        TEXT,
+    title       TEXT,
     description TEXT,
     status      TEXT,
     parent      INTEGER,

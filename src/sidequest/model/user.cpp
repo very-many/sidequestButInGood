@@ -1,6 +1,8 @@
 #include "user.h"
 
 namespace Sidequest {
+    User::User() = default;
+
     User::User(const Id id) : id(id) {
     }
 

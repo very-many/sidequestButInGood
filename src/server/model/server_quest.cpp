@@ -1,60 +1,43 @@
 #include "server_quest.h"
 
-#include <utility>
+#include <iostream>
 
 #include "server_user.h"
 #include "storage/query.h"
 #include "storage/database.h"
 
 namespace Sidequest::Server {
-    ServerQuest::ServerQuest(Database* database, const Id id) : Quest(id), Persistable(database) {
+    ServerQuest::ServerQuest(Database* database)
+        : Persistable(database) {
     }
 
-    ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description, Quest* parent,
+    ServerQuest::ServerQuest(Database* database, const Id id) : SerialisableQuest(id), Persistable(database) {
+    }
+
+    ServerQuest::ServerQuest(Database* database, const std::string& title, const std::string& description, Quest* parent,
                              User* owner, User* editor)
-        : Quest(name, description, parent, owner, editor), Persistable(database) {
-        if (parent != nullptr)
-            this->parent_id = parent->id;
-        if (owner != nullptr)
-            this->owner_id = owner->id;
-        if (editor != nullptr)
-            this->editor_id = editor->id;
+        : SerialisableQuest(title, description, initial ,parent, owner, editor), Persistable(database) {
     }
 
-    ServerQuest::ServerQuest(Database* database, const std::string& name, const std::string& description,
+    ServerQuest::ServerQuest(Database* database, const std::string& title, const std::string& description,
                              Status status, Quest* parent, User* owner, User* editor)
-        : Quest(name, description, status, parent, owner, editor), Persistable(database) {
-        if (parent != nullptr)
-            this->parent_id = parent->id;
-        if (owner != nullptr)
-            this->owner_id = owner->id;
-        if (editor != nullptr)
-            this->editor_id = editor->id;
+        : SerialisableQuest(title, description, status, parent, owner, editor), Persistable(database) {
     }
 
     ServerQuest::~ServerQuest() = default;
 
     void ServerQuest::bind_all_params(Query& query) const {
-        query.bind(1, name);
+        query.bind(1, title);
         query.bind(2, description);
         query.bind(3, Quest::status_to_string(status));
-        if (parent != nullptr)
-            query.bind(4, static_cast<long>(parent->id));
-        else
-            query.bind_null(4);
-        if (owner != nullptr)
-            query.bind(5, static_cast<long>(owner->id));
-        else
-            query.bind_null(5);
-        if (editor != nullptr)
-            query.bind(6, static_cast<long>(editor->id));
-        else
-            query.bind_null(6);
+        query.bind(4, parent_id);
+        query.bind(5, owner_id);
+        query.bind(6, editor_id);
     }
 
     void ServerQuest::create_on_database() {
-        auto query = Query(
-            database, "INSERT INTO quest(name, description, status, parent, owner, editor) VALUES (?, ?, ?, ?, ?, ?);");
+        auto query = Query(database,
+            "INSERT INTO quest(title, description, status, parent, owner, editor) VALUES (?, ?, ?, ?, ?, ?);");
         bind_all_params(query);
         query.execute();
         if (!query.is_done())
@@ -64,24 +47,19 @@ namespace Sidequest::Server {
     }
 
     void ServerQuest::read_on_database() {
-        auto query = Query(database, "SELECT name, description, status, parent, owner, editor FROM quest WHERE id=?;");
+        auto query = Query(database, "SELECT title, description, status, parent, owner, editor FROM quest WHERE id=?;");
         query.bind(1, static_cast<long>(id));
         query.execute();
 
         if (!query.has_row())
             throw UnableToReadObjectException(std::to_string(id));
 
-        this->name = query.read_text_value("name");
-        this->description = query.read_text_value("description");
-        this->status = string_to_status(query.read_text_value("status"));
-        this->parent_id = query.read_optional_integer_value("parent");
-        this->owner_id = query.read_optional_integer_value("owner");
-        this->editor_id = query.read_optional_integer_value("editor");
+        read_from_query(query);
     }
 
     void ServerQuest::update_on_database() {
         auto query = Query(
-            database, "UPDATE quest set name=?, description=?, status=?, parent=?, owner=?, editor=? WHERE id=?;");
+            database, "UPDATE quest set title=?, description=?, status=?, parent=?, owner=?, editor=? WHERE id=?;");
         bind_all_params(query);
         query.bind(7, static_cast<long>(this->id));
         query.execute();
@@ -98,9 +76,18 @@ namespace Sidequest::Server {
             throw UnableToDeleteObjectException(std::to_string(id));
     }
 
+    void ServerQuest::read_from_query(const Query& query) {
+        this->title = query.read_text_value("title");
+        this->description = query.read_text_value("description");
+        this->status = string_to_status(query.read_text_value("status"));
+        this->parent_id = query.read_optional_integer_value("parent");
+        this->owner_id = query.read_optional_integer_value("owner");
+        this->editor_id = query.read_optional_integer_value("editor");
+    }
+
     void ServerQuest::load_subquests_from_db() {
         auto query = Query(
-            database, "SELECT id, name, description, status, parent, owner, editor FROM quest WHERE parent=?;");
+            database, "SELECT id, title, description, status, parent, owner, editor FROM quest WHERE parent=?;");
         query.bind(1, static_cast<long>(id));
 
         for (auto it = query.begin(); it != query.end(); ++it) {
@@ -110,7 +97,7 @@ namespace Sidequest::Server {
 
             auto subQuest = new ServerQuest(
                 database,
-                query.read_text_value("name"),
+                query.read_text_value("title"),
                 query.read_text_value("description"),
                 string_to_status(query.read_text_value("status")),
                 this,

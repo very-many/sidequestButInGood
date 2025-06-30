@@ -8,7 +8,7 @@
 
 class QUEST_CRUD_Tests : public ::testing::Test {
 protected:
-    Sidequest::Server::Database *database = nullptr;
+    Sidequest::Server::Database* database = nullptr;
 
     QUEST_CRUD_Tests() {
     }
@@ -16,9 +16,9 @@ protected:
     ~QUEST_CRUD_Tests() override = default;
 
     void SetUp() override {
-        // std::string db_path = "../../application_root/query_crud_test.db";
+        // std::string db_path = "../application_root/query_crud_test.db";
         std::string db_path = ":memory:";
-        std::string schema_path = "../../application_root/create_database.sql";
+        std::string schema_path = "../application_root/create_database.sql";
         database = Sidequest::Server::DatabaseFactory::fetch_database(db_path, schema_path);
     }
 
@@ -40,7 +40,7 @@ TEST_F(QUEST_CRUD_Tests, CRUD_QUEST_CREATE) {
     const auto quest2 = new ServerQuest(database, id);
     quest2->read_on_database();
 
-    EXPECT_EQ(quest2->name, "quest1");
+    EXPECT_EQ(quest2->title, "quest1");
     EXPECT_EQ(quest2->description, "first quest");
     EXPECT_EQ(quest2->parent_id, 10);
     EXPECT_EQ(quest2->owner_id, 2);
@@ -62,7 +62,7 @@ TEST_F(QUEST_CRUD_Tests, CRUD_QUEST_NULL_CREATE) {
     const auto quest2 = new ServerQuest(database, id);
     quest2->read_on_database();
 
-    EXPECT_EQ(quest2->name, "quest1");
+    EXPECT_EQ(quest2->title, "quest1");
     EXPECT_EQ(quest2->description, "first quest");
     EXPECT_EQ(quest2->parent_id, std::nullopt);
     EXPECT_EQ(quest2->owner_id, std::nullopt);
@@ -79,14 +79,14 @@ TEST_F(QUEST_CRUD_Tests, CRUD_QUEST_UPDATE) {
     const auto quest = new ServerQuest(database, "quest1", "first quest", new Quest(10), new User(2), new User(1));
     quest->create_on_database();
     const auto id = quest->id;
-    quest->name = "changedName";
+    quest->title = "changedName";
     quest->update_on_database();
     delete(quest);
 
     auto quest2 = new ServerQuest(database, id);
     quest2->read_on_database();
 
-    EXPECT_EQ(quest2->name, "changedName");
+    EXPECT_EQ(quest2->title, "changedName");
     EXPECT_EQ(quest2->description, "first quest");
     EXPECT_EQ(quest2->parent_id, 10);
     EXPECT_EQ(quest2->owner_id, 2);
@@ -113,6 +113,7 @@ TEST_F(QUEST_CRUD_Tests, CRUD_QUEST_DELETE) {
         const auto quest3 = std::make_unique<ServerQuest>(ServerQuest(database, id));
         quest3->read_on_database();
         FAIL();
-    } catch (const UnableToReadObjectException &expected) {
+    }
+    catch (const UnableToReadObjectException& expected) {
     }
 }

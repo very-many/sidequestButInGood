@@ -8,6 +8,9 @@ project(Sidequest CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -flto")
+set(CMAKE_LINKER_FLAGS_RELEASE "${CMAKE_LINKER_FLAGS_RELEASE} -flto")
+
 set(SIDEQUEST_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/sidequest")
 set(SIDEQUEST_SERVER_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/server")
 set(SIDEQUEST_CLIENT_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/client")
@@ -18,7 +21,7 @@ set(SIDEQUEST_DEPENDENCIES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dependencies")
 # ===============================
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(GetSourceFiles)
-set(FILE_TYPES *.cpp *.h )
+set(FILE_TYPES *.cpp *.h *.hpp )
 
 # ===============================
 # Settings for all components
@@ -43,19 +46,21 @@ list(REMOVE_ITEM SERVER_SOURCES "src/server/main.cpp")
 add_library(server_lib ${SERVER_SOURCES} )
 
 add_dependencies(server_lib sidequest_lib)
+target_link_libraries(server_lib sidequest_lib)
 
 # ===============================
 # Component server executable
 # ===============================
 add_executable(server src/server/main.cpp)
 
-target_link_libraries(server sidequest_lib)  
-target_link_libraries(server server_lib)  
-target_link_libraries(server sqlite3)  
-
+target_link_libraries(server server_lib)
+target_link_libraries(server sqlite3)
+if(WIN32)
+	target_link_libraries(server ws2_32)
+endif()
 # set the application working directory
 include_directories(${SIDEQUEST_SERVER_INCLUDE_DIR})
-set_target_properties(server PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/application_root" )
+set_target_properties(server PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/application_root")
 
 # ===============================
 # Component client_lib
@@ -72,10 +77,12 @@ add_dependencies(client_lib sidequest_lib)
 # ===============================
 add_executable(client src/client/main.cpp)
 
-target_link_libraries(client sidequest_lib)
+target_link_libraries(client_lib sidequest_lib)
 target_link_libraries(client client_lib)
 target_link_libraries(client sqlite3)
-
+if(WIN32)
+	target_link_libraries(client ws2_32)
+endif()
 # set the application working directory
 include_directories(${SIDEQUEST_CLIENT_INCLUDE_DIR})
 set_target_properties(client PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/application_root" )
@@ -83,11 +90,10 @@ set_target_properties(client PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_C
 # ===============================
 # Setup Google Test
 # ===============================
-
 include(FetchContent)
 FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
+		googletest
+		URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -98,23 +104,20 @@ enable_testing()
 find_directories(TEST_SOURCE_DIRS "src/unit_tests" "${FILE_TYPES}")
 generate_source_tree(TEST_SOURCES "${TEST_SOURCE_DIRS}" "${FILE_TYPES}")
 
-add_executable(
-        unit_tests
-        ${TEST_SOURCES}
-        src/unit_tests/db_factory_test.cpp
-        src/unit_tests/query_iterator_test.cpp
-        src/unit_tests/quest_crud_test.cpp
-        src/unit_tests/quest_subquest_loading_test.cpp
-        src/unit_tests/user_quest_loading_test.cpp
+add_executable(unit_tests
+		${TEST_SOURCES}
 )
-target_link_libraries(
-  unit_tests
-  GTest::gtest_main
-  sidequest_lib
-  server_lib
-  client_lib
-  sqlite3
+target_link_libraries(unit_tests
+		GTest::gtest_main
+		sidequest_lib
+		server_lib
+		client_lib
+		sqlite3
 )
+if(WIN32)
+	target_link_libraries(unit_tests ws2_32)
+endif()
+
 
 add_dependencies(unit_tests sidequest_lib)
 add_dependencies(unit_tests server_lib)
@@ -125,21 +128,20 @@ gtest_discover_tests(unit_tests)
 
 # copy necessary dlls to target directory
 #if(MSVC)
-	add_custom_command(
+add_custom_command(
 		TARGET server
 		POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different
 		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
 		"$<TARGET_FILE_DIR:server>"
-	)
-	add_custom_command(
+)
+add_custom_command(
 		TARGET unit_tests
 		POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different
 		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sqlite3.dll"
 		"$<TARGET_FILE_DIR:server>"
-	)
+)
 #endif(MSVC)
-
 
 set_target_properties(unit_tests PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/application_root" )

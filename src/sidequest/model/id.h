@@ -1,6 +1,5 @@
 #pragma once
 
-namespace Sidequest
-{
+namespace Sidequest {
 	typedef unsigned long Id;
 }

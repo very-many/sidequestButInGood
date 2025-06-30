@@ -14,9 +14,9 @@ protected:
     ~QUERY_ITERATOR_Test() override = default;
 
     void SetUp() override {
-        // std::string db_path = "../../application_root/crud_test.db";
+        // std::string db_path = "../application_root/crud_test.db";
         std::string db_path = ":memory:";
-        std::string schema_path = "../../application_root/create_database.sql";
+        std::string schema_path = "../application_root/create_database.sql";
         this->database = Sidequest::Server::DatabaseFactory::fetch_database(db_path, schema_path);
         populate_database();
     }

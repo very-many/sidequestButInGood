@@ -21,9 +21,9 @@ protected:
     }
 
     void SetUp() override {
-        // std::string db_path = "../../application_root/crud_test.db";
+        // std::string db_path = "../application_root/crud_test.db";
         std::string db_path = ":memory:";
-        std::string schema_path = "../../application_root/create_database.sql";
+        std::string schema_path = "../application_root/create_database.sql";
         this->database = Sidequest::Server::DatabaseFactory::fetch_database(db_path, schema_path);
         this->parent_id = 0;
         populate_database();
@@ -35,9 +35,9 @@ protected:
 
     static void sort_quest_list(std::vector<Sidequest::Quest*>& quests) {
         std::sort(quests.begin(), quests.end(),
-            [](const auto& lhs, const auto& rhs) {
-                return lhs->name < rhs->name;
-            });
+                  [](const auto& lhs, const auto& rhs) {
+                      return lhs->title < rhs->title;
+                  });
     }
 
     static void all_quests_as_list(Sidequest::Quest* quest, std::vector<Sidequest::Quest*>& out_list) {
@@ -89,7 +89,7 @@ TEST_F(QUEST_TEST, QUEST_LOAD_CHILDREN) {
     for (const auto subquest : parent_quest->subquests) {
         EXPECT_EQ(subquest->parent->id, this->parent_id);
         auto expect_name = std::string{"s" + std::to_string(count)};
-        EXPECT_EQ(subquest->name, expect_name);
+        EXPECT_EQ(subquest->title, expect_name);
         auto expect_desc = std::string{"subQ" + std::to_string(count)};
         EXPECT_EQ(subquest->description, expect_desc);
         count++;
@@ -109,6 +109,6 @@ TEST_F(QUEST_TEST, QUEST_LOAD_CHILDREN_RECURSIVE) {
 
     for (unsigned int i = 0; i < allQ.size(); i++) {
         EXPECT_EQ(allQ[i]->id, i + 1);
-        EXPECT_EQ(allQ[i]->name, quests[i]->name);
+        EXPECT_EQ(allQ[i]->title, quests[i]->title);
     }
 }

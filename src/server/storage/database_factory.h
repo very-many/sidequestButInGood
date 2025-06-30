@@ -7,9 +7,8 @@ namespace Sidequest::Server {
 
     class DatabaseFactory {
     public:
-
-        static Database* fetch_database(std::string&, std::string&);
-        static Database* reset_database(std::string&, std::string&);
+        static Database* fetch_database(std::string& db_path, std::string& schema_path);
+        static Database* reset_database(std::string& db_path, std::string& schema_path);
 
     private:
 

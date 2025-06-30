@@ -14,8 +14,8 @@ protected:
     ~USER_CRUD_TEST() override = default;
 
     void SetUp() override {
-        std::string db_path = ":memory:"; //"../../application_root/crud_test.db";
-        std::string schema_path = "../../application_root/create_database.sql";
+        std::string db_path = ":memory:"; //"../application_root/crud_test.db";
+        std::string schema_path = "../application_root/create_database.sql";
         database = Sidequest::Server::DatabaseFactory::fetch_database(db_path, schema_path);
     }
 

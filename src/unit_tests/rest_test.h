@@ -1,9 +1,10 @@
+#pragma once
 #include <gtest/gtest.h>
 
 #include <iostream>
+#include <thread>
 
-namespace Sidequest 
-{
+namespace Sidequest {
 	class SerialisableUser;
 	class SerialisableQuest;
 
@@ -11,21 +12,20 @@ namespace Sidequest
 		class Database;
 		class ServerApplication;
 	}
+
 	namespace Client {
 		class ClientApplication;
 	}
 
-	class RestTest : public ::testing::Test
-	{
+	class RestTest : public ::testing::Test {
 	protected:
-
 		RestTest();
 
-		virtual ~RestTest();
+		~RestTest() override;
 
-		virtual void SetUp();
+		void SetUp() override;
 
-		virtual void TearDown();
+		void TearDown() override;
 
 		SerialisableQuest* create_subquest(SerialisableQuest* parent_quest, SerialisableUser* owner);
 
@@ -34,5 +34,4 @@ namespace Sidequest
 		std::thread thread;
 		Client::ClientApplication* client;
 	};
-
 }

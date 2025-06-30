@@ -5,48 +5,39 @@
 #include <json.hpp>
 using namespace nlohmann;
 
-namespace Sidequest 
-{
+namespace Sidequest {
+    SerialisableUser::SerialisableUser(): User() {
+    }
 
-	SerialisableUser::SerialisableUser()
-	{
-	}
+    SerialisableUser::SerialisableUser(Id id)
+        : User(id) {
+    }
 
-	SerialisableUser::SerialisableUser(Id id)
-		: User(id)
-	{
-	}
+    SerialisableUser::SerialisableUser(const std::string& display_name, const std::string& email, const std::string& password)
+        : User(display_name, email, password) {
+    }
 
-	SerialisableUser::SerialisableUser(std::string email, std::string display_name, std::string password)
-		: User( email, display_name, password )
-	{
-	}
+    SerialisableUser::~SerialisableUser() = default;
 
-	SerialisableUser::~SerialisableUser()
-	{
-	}
+    Json SerialisableUser::to_json(bool full_serialise) {
+        if (!full_serialise)
+            return Json(std::to_string(id));
 
-	Json SerialisableUser::to_json( bool full_serialise )
-	{
-		if (!full_serialise)
-			return Json(std::to_string(id));
+        Json json = {
+            {"id", id},
+            {"display_name", display_name},
+            {"email", email}
+        };
 
-		Json json = {
-			{ "id", id },
-			{ "display_name", display_name },
-			{ "email", email }
-		};
+        return json;
+    }
 
-		return json;
-	}
-
-	void SerialisableUser::from_json(const Json& json)
-	{
-		// id might not exist of the user data is send as a create-user request,
-		// such the id is not yet assigned
-		if ( json.contains("id"))
-			json.at("id").get_to(id);
-		json.at("display_name").get_to(display_name);
-		json.at("email").get_to(email);
-	}
+    void SerialisableUser::from_json(const Json& json) {
+        // id might not exist of the user data is sent as a create-user request,
+        // such the id is not yet assigned
+        if (json.contains("id"))
+            json.at("id").get_to(id);
+        json.at("display_name").get_to(display_name);
+        json.at("email").get_to(email);
+    }
 }

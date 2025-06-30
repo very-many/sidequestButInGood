@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <utility>
+#include "user.h"
 
 namespace Sidequest {
     Quest::Quest() = default;
@@ -9,15 +10,27 @@ namespace Sidequest {
     Quest::Quest(const Id id) : id(id) {
     }
 
-    Quest::Quest(std::string name, std::string description, Quest* parent, User* owner,
+    Quest::Quest(std::string title, std::string description, Quest* parent, User* owner,
                  User* editor)
-        : name(std::move(name)), description(std::move(description)), parent(parent), owner(owner), editor(editor) {
+        : title(std::move(title)), description(std::move(description)), parent(parent), owner(owner), editor(editor) {
+        if (owner != nullptr)
+            owner_id = owner->id;
+        if (editor != nullptr)
+            editor_id = editor->id;
+        if (parent != nullptr)
+            parent_id = parent->id;
     }
 
-    Quest::Quest(std::string name, std::string description, Quest::Status status, Quest* parent, User* owner,
+    Quest::Quest(std::string title, std::string description, const Status status, Quest* parent, User* owner,
                  User* editor)
-        : name(std::move(name)), description(std::move(description)), status(status), parent(parent), owner(owner),
+        : title(std::move(title)), description(std::move(description)), status(status), parent(parent), owner(owner),
           editor(editor) {
+        if (owner != nullptr)
+            owner_id = owner->id;
+        if (editor != nullptr)
+            editor_id = editor->id;
+        if (parent != nullptr)
+            parent_id = parent->id;
     }
 
     Quest::~Quest() {

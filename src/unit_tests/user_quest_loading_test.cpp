@@ -18,9 +18,9 @@ protected:
     ~USER_QUEST_TEST() override = default;
 
     void SetUp() override {
-        // std::string db_path = "../../application_root/crud_test.db";
+        // std::string db_path = "../application_root/crud_test.db";
         std::string db_path = ":memory:";
-        std::string schema_path = "../../application_root/create_database.sql";
+        std::string schema_path = "../application_root/create_database.sql";
         this->database = Sidequest::Server::DatabaseFactory::fetch_database(db_path, schema_path);
         this->owner_id = 0;
         populate_database();
@@ -60,15 +60,15 @@ TEST_F(USER_QUEST_TEST, USER_LOAD_QUESTS) {
     EXPECT_EQ(owner->main_quests.size(), 3);
 
     std::sort(owner->main_quests.begin(), owner->main_quests.end(),
-        [](const auto& lhs, const auto& rhs) {
-            return lhs->name < rhs->name;
-        });
+              [](const auto& lhs, const auto& rhs) {
+                  return lhs->title < rhs->title;
+              });
 
     int count = 1;
     for (const auto quest : owner->main_quests) {
         EXPECT_EQ(quest->owner->id, this->owner_id);
         auto expect_name = std::string{"q" + std::to_string(count)};
-        EXPECT_EQ(quest->name, expect_name);
+        EXPECT_EQ(quest->title, expect_name);
         count++;
     }
 }

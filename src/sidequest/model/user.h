@@ -9,6 +9,7 @@ namespace Sidequest {
     class User {
     public:
         typedef unsigned long Id;
+        User();
         explicit User(Id);
 
         User(const std::string& display_name, const std::string& email, const std::string& password);

@@ -13,12 +13,12 @@ namespace Sidequest
 	class SerialisableUser : public User, public JsonSerialisable {
 	public:
 		SerialisableUser();
-		SerialisableUser(Id id);
-		SerialisableUser(std::string email, std::string display_name, std::string password);
-		virtual ~SerialisableUser();
+		explicit SerialisableUser(Id id);
+		SerialisableUser(const std::string& display_name, const std::string& email, const std::string& password);
+		~SerialisableUser() override;
 
 		// implementation of JsonSerialisable
-		virtual Json to_json(bool full_serialise = true) override;
-		virtual void from_json(const Json& json) override;
+		Json to_json(bool full_serialise = true) override;
+		void from_json(const Json& json) override;
 	};
 }

@@ -52,16 +52,37 @@ build cmake_object_order_depends_target_sidequest_lib: phony || .
 build CMakeFiles/sidequest_lib.dir/src/sidequest/model/quest.cpp.obj: CXX_COMPILER__sidequest_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest/model/quest.cpp || cmake_object_order_depends_target_sidequest_lib
   DEP_FILE = CMakeFiles\sidequest_lib.dir\src\sidequest\model\quest.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\sidequest_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\sidequest_lib.dir\src\sidequest\model
 
 build CMakeFiles/sidequest_lib.dir/src/sidequest/model/user.cpp.obj: CXX_COMPILER__sidequest_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest/model/user.cpp || cmake_object_order_depends_target_sidequest_lib
   DEP_FILE = CMakeFiles\sidequest_lib.dir\src\sidequest\model\user.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\sidequest_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\sidequest_lib.dir\src\sidequest\model
+
+build CMakeFiles/sidequest_lib.dir/src/sidequest/network/json_serialisable.cpp.obj: CXX_COMPILER__sidequest_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest/network/json_serialisable.cpp || cmake_object_order_depends_target_sidequest_lib
+  DEP_FILE = CMakeFiles\sidequest_lib.dir\src\sidequest\network\json_serialisable.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\sidequest_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\sidequest_lib.dir\src\sidequest\network
+
+build CMakeFiles/sidequest_lib.dir/src/sidequest/network/serialisable_quest.cpp.obj: CXX_COMPILER__sidequest_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest/network/serialisable_quest.cpp || cmake_object_order_depends_target_sidequest_lib
+  DEP_FILE = CMakeFiles\sidequest_lib.dir\src\sidequest\network\serialisable_quest.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\sidequest_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\sidequest_lib.dir\src\sidequest\network
+
+build CMakeFiles/sidequest_lib.dir/src/sidequest/network/serialisable_user.cpp.obj: CXX_COMPILER__sidequest_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest/network/serialisable_user.cpp || cmake_object_order_depends_target_sidequest_lib
+  DEP_FILE = CMakeFiles\sidequest_lib.dir\src\sidequest\network\serialisable_user.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\sidequest_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\sidequest_lib.dir\src\sidequest\network
 
 
 # =============================================================================
@@ -69,14 +90,14 @@ build CMakeFiles/sidequest_lib.dir/src/sidequest/model/user.cpp.obj: CXX_COMPILE
 
 
 #############################################
-# Link the static library bin\libsidequest_lib.a
+# Link the static library libsidequest_lib.a
 
-build bin/libsidequest_lib.a: CXX_STATIC_LIBRARY_LINKER__sidequest_lib_Debug CMakeFiles/sidequest_lib.dir/src/sidequest/model/quest.cpp.obj CMakeFiles/sidequest_lib.dir/src/sidequest/model/user.cpp.obj
+build libsidequest_lib.a: CXX_STATIC_LIBRARY_LINKER__sidequest_lib_Debug CMakeFiles/sidequest_lib.dir/src/sidequest/model/quest.cpp.obj CMakeFiles/sidequest_lib.dir/src/sidequest/model/user.cpp.obj CMakeFiles/sidequest_lib.dir/src/sidequest/network/json_serialisable.cpp.obj CMakeFiles/sidequest_lib.dir/src/sidequest/network/serialisable_quest.cpp.obj CMakeFiles/sidequest_lib.dir/src/sidequest/network/serialisable_user.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\sidequest_lib.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = bin\libsidequest_lib.a
+  TARGET_FILE = libsidequest_lib.a
   TARGET_PDB = sidequest_lib.a.dbg
 
 # =============================================================================
@@ -88,68 +109,117 @@ build bin/libsidequest_lib.a: CXX_STATIC_LIBRARY_LINKER__sidequest_lib_Debug CMa
 
 build cmake_object_order_depends_target_server_lib: phony || cmake_object_order_depends_target_sidequest_lib
 
-build CMakeFiles/server_lib.dir/src/server/main.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/main.cpp || cmake_object_order_depends_target_server_lib
-  DEP_FILE = CMakeFiles\server_lib.dir\src\server\main.cpp.obj.d
+build CMakeFiles/server_lib.dir/src/server/controller/crud/create_command.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/controller/crud/create_command.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\controller\crud\create_command.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\server_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\controller\crud
+
+build CMakeFiles/server_lib.dir/src/server/controller/crud/delete_command.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/controller/crud/delete_command.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\controller\crud\delete_command.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\server_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\controller\crud
+
+build CMakeFiles/server_lib.dir/src/server/controller/crud/read_command.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/controller/crud/read_command.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\controller\crud\read_command.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\server_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\controller\crud
+
+build CMakeFiles/server_lib.dir/src/server/controller/crud/update_command.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/controller/crud/update_command.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\controller\crud\update_command.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\server_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\controller\crud
+
+build CMakeFiles/server_lib.dir/src/server/server_application.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/server_application.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\server_application.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server
 
 build CMakeFiles/server_lib.dir/src/server/model/server_quest.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/model/server_quest.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\model\server_quest.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\model
 
 build CMakeFiles/server_lib.dir/src/server/model/server_user.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/model/server_user.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\model\server_user.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\model
+
+build CMakeFiles/server_lib.dir/src/server/network/command_handler.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/network/command_handler.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\network\command_handler.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\server_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\network
+
+build CMakeFiles/server_lib.dir/src/server/network/connection_handler.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/network/connection_handler.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\network\connection_handler.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\server_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\network
 
 build CMakeFiles/server_lib.dir/src/server/storage/column_cache.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/storage/column_cache.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\storage\column_cache.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\storage
 
 build CMakeFiles/server_lib.dir/src/server/storage/database.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/storage/database.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\storage\database.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\storage
 
 build CMakeFiles/server_lib.dir/src/server/storage/database_factory.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/storage/database_factory.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\storage\database_factory.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\storage
 
 build CMakeFiles/server_lib.dir/src/server/storage/persistable.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/storage/persistable.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\storage\persistable.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\storage
 
 build CMakeFiles/server_lib.dir/src/server/storage/query.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/storage/query.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\storage\query.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\storage
 
 build CMakeFiles/server_lib.dir/src/server/storage/statement_cache.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/storage/statement_cache.cpp || cmake_object_order_depends_target_server_lib
   DEP_FILE = CMakeFiles\server_lib.dir\src\server\storage\statement_cache.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server_lib.dir
   OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\storage
+
+build CMakeFiles/server_lib.dir/src/server/view/list_quest_command.cpp.obj: CXX_COMPILER__server_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/view/list_quest_command.cpp || cmake_object_order_depends_target_server_lib
+  DEP_FILE = CMakeFiles\server_lib.dir\src\server\view\list_quest_command.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\server_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\server_lib.dir\src\server\view
 
 
 # =============================================================================
@@ -157,14 +227,14 @@ build CMakeFiles/server_lib.dir/src/server/storage/statement_cache.cpp.obj: CXX_
 
 
 #############################################
-# Link the static library bin\libserver_lib.a
+# Link the static library libserver_lib.a
 
-build bin/libserver_lib.a: CXX_STATIC_LIBRARY_LINKER__server_lib_Debug CMakeFiles/server_lib.dir/src/server/main.cpp.obj CMakeFiles/server_lib.dir/src/server/model/server_quest.cpp.obj CMakeFiles/server_lib.dir/src/server/model/server_user.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/column_cache.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/database.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/database_factory.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/persistable.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/query.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/statement_cache.cpp.obj || bin/libsidequest_lib.a
+build libserver_lib.a: CXX_STATIC_LIBRARY_LINKER__server_lib_Debug CMakeFiles/server_lib.dir/src/server/controller/crud/create_command.cpp.obj CMakeFiles/server_lib.dir/src/server/controller/crud/delete_command.cpp.obj CMakeFiles/server_lib.dir/src/server/controller/crud/read_command.cpp.obj CMakeFiles/server_lib.dir/src/server/controller/crud/update_command.cpp.obj CMakeFiles/server_lib.dir/src/server/server_application.cpp.obj CMakeFiles/server_lib.dir/src/server/model/server_quest.cpp.obj CMakeFiles/server_lib.dir/src/server/model/server_user.cpp.obj CMakeFiles/server_lib.dir/src/server/network/command_handler.cpp.obj CMakeFiles/server_lib.dir/src/server/network/connection_handler.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/column_cache.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/database.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/database_factory.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/persistable.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/query.cpp.obj CMakeFiles/server_lib.dir/src/server/storage/statement_cache.cpp.obj CMakeFiles/server_lib.dir/src/server/view/list_quest_command.cpp.obj || libsidequest_lib.a
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\server_lib.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = bin\libserver_lib.a
+  TARGET_FILE = libserver_lib.a
   TARGET_PDB = server_lib.a.dbg
 
 # =============================================================================
@@ -179,7 +249,7 @@ build cmake_object_order_depends_target_server: phony || cmake_object_order_depe
 build CMakeFiles/server.dir/src/server/main.cpp.obj: CXX_COMPILER__server_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server/main.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\src\server\main.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\src\server
 
@@ -189,18 +259,92 @@ build CMakeFiles/server.dir/src/server/main.cpp.obj: CXX_COMPILER__server_unscan
 
 
 #############################################
-# Link the executable bin\server.exe
+# Link the executable server.exe
 
-build bin/server.exe: CXX_EXECUTABLE_LINKER__server_Debug CMakeFiles/server.dir/src/server/main.cpp.obj | bin/libserver_lib.a bin/libsidequest_lib.a || bin/libserver_lib.a bin/libsidequest_lib.a
+build server.exe: CXX_EXECUTABLE_LINKER__server_Debug CMakeFiles/server.dir/src/server/main.cpp.obj | libserver_lib.a libsidequest_lib.a || libserver_lib.a libsidequest_lib.a
   FLAGS = -g
-  LINK_LIBRARIES = bin/libserver_lib.a  -lsqlite3  bin/libsidequest_lib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = libserver_lib.a  -lsqlite3  -lws2_32  libsidequest_lib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
   OBJECT_DIR = CMakeFiles\server.dir
-  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\maxim\OneDrive\Dokumente\sidequestButInGood\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies/sqlite3.dll C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/bin"
+  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\maxim\OneDrive\Dokumente\sidequestButInGood\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies/sqlite3.dll C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug"
   PRE_LINK = cd .
-  TARGET_FILE = bin\server.exe
-  TARGET_IMPLIB = bin\libserver.dll.a
+  TARGET_FILE = server.exe
+  TARGET_IMPLIB = libserver.dll.a
   TARGET_PDB = server.exe.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target client_lib
+
+
+#############################################
+# Order-only phony target for client_lib
+
+build cmake_object_order_depends_target_client_lib: phony || cmake_object_order_depends_target_sidequest_lib
+
+build CMakeFiles/client_lib.dir/src/client/client_application.cpp.obj: CXX_COMPILER__client_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client/client_application.cpp || cmake_object_order_depends_target_client_lib
+  DEP_FILE = CMakeFiles\client_lib.dir\src\client\client_application.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\client_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\client_lib.dir\src\client
+
+build CMakeFiles/client_lib.dir/src/client/network/client_stubs.cpp.obj: CXX_COMPILER__client_lib_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client/network/client_stubs.cpp || cmake_object_order_depends_target_client_lib
+  DEP_FILE = CMakeFiles\client_lib.dir\src\client\network\client_stubs.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\client_lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\client_lib.dir\src\client\network
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target client_lib
+
+
+#############################################
+# Link the static library libclient_lib.a
+
+build libclient_lib.a: CXX_STATIC_LIBRARY_LINKER__client_lib_Debug CMakeFiles/client_lib.dir/src/client/client_application.cpp.obj CMakeFiles/client_lib.dir/src/client/network/client_stubs.cpp.obj || libsidequest_lib.a
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles\client_lib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = libclient_lib.a
+  TARGET_PDB = client_lib.a.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target client
+
+
+#############################################
+# Order-only phony target for client
+
+build cmake_object_order_depends_target_client: phony || cmake_object_order_depends_target_client_lib cmake_object_order_depends_target_sidequest_lib
+
+build CMakeFiles/client.dir/src/client/main.cpp.obj: CXX_COMPILER__client_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client/main.cpp || cmake_object_order_depends_target_client
+  DEP_FILE = CMakeFiles\client.dir\src\client\main.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client
+  OBJECT_DIR = CMakeFiles\client.dir
+  OBJECT_FILE_DIR = CMakeFiles\client.dir\src\client
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target client
+
+
+#############################################
+# Link the executable client.exe
+
+build client.exe: CXX_EXECUTABLE_LINKER__client_Debug CMakeFiles/client.dir/src/client/main.cpp.obj | libclient_lib.a libsidequest_lib.a || libclient_lib.a libsidequest_lib.a
+  FLAGS = -g
+  LINK_LIBRARIES = libclient_lib.a  -lsqlite3  -lws2_32  libsidequest_lib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_PATH = -LC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
+  OBJECT_DIR = CMakeFiles\client.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = client.exe
+  TARGET_IMPLIB = libclient.dll.a
+  TARGET_PDB = client.exe.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target unit_tests
@@ -209,47 +353,89 @@ build bin/server.exe: CXX_EXECUTABLE_LINKER__server_Debug CMakeFiles/server.dir/
 #############################################
 # Order-only phony target for unit_tests
 
-build cmake_object_order_depends_target_unit_tests: phony || bin/server.exe cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main cmake_object_order_depends_target_server_lib cmake_object_order_depends_target_sidequest_lib
+build cmake_object_order_depends_target_unit_tests: phony || cmake_object_order_depends_target_client_lib cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main cmake_object_order_depends_target_server_lib cmake_object_order_depends_target_sidequest_lib server.exe
 
 build CMakeFiles/unit_tests.dir/src/unit_tests/db_factory_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/db_factory_test.cpp || cmake_object_order_depends_target_unit_tests
   DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\db_factory_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles\unit_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
 
 build CMakeFiles/unit_tests.dir/src/unit_tests/query_iterator_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/query_iterator_test.cpp || cmake_object_order_depends_target_unit_tests
   DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\query_iterator_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles\unit_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
 
 build CMakeFiles/unit_tests.dir/src/unit_tests/quest_crud_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/quest_crud_test.cpp || cmake_object_order_depends_target_unit_tests
   DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\quest_crud_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles\unit_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
 
 build CMakeFiles/unit_tests.dir/src/unit_tests/quest_subquest_loading_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/quest_subquest_loading_test.cpp || cmake_object_order_depends_target_unit_tests
   DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\quest_subquest_loading_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/rest_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/rest_test.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\rest_test.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/rest_test_crud_quest.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/rest_test_crud_quest.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\rest_test_crud_quest.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/rest_test_crud_user.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/rest_test_crud_user.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\rest_test_crud_user.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/rest_test_quest_list.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/rest_test_quest_list.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\rest_test_quest_list.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/serialise_test_quest.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/serialise_test_quest.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\serialise_test_quest.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\unit_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
+
+build CMakeFiles/unit_tests.dir/src/unit_tests/serialise_test_user.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/serialise_test_user.cpp || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\serialise_test_user.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles\unit_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
 
 build CMakeFiles/unit_tests.dir/src/unit_tests/user_crud_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/user_crud_test.cpp || cmake_object_order_depends_target_unit_tests
   DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\user_crud_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles\unit_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
 
 build CMakeFiles/unit_tests.dir/src/unit_tests/user_quest_loading_test.cpp.obj: CXX_COMPILER__unit_tests_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/unit_tests/user_quest_loading_test.cpp || cmake_object_order_depends_target_unit_tests
   DEP_FILE = CMakeFiles\unit_tests.dir\src\unit_tests\user_quest_loading_test.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles\unit_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\unit_tests.dir\src\unit_tests
 
@@ -259,18 +445,18 @@ build CMakeFiles/unit_tests.dir/src/unit_tests/user_quest_loading_test.cpp.obj: 
 
 
 #############################################
-# Link the executable bin\unit_tests.exe
+# Link the executable unit_tests.exe
 
-build bin/unit_tests.exe unit_tests[1]_tests.cmake | ${cmake_ninja_workdir}unit_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__unit_tests_Debug CMakeFiles/unit_tests.dir/src/unit_tests/db_factory_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/query_iterator_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/quest_crud_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/quest_subquest_loading_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/user_crud_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/user_quest_loading_test.cpp.obj | lib/libgtest_main.a bin/libsidequest_lib.a bin/libserver_lib.a lib/libgtest.a bin/libsidequest_lib.a || bin/libserver_lib.a bin/libsidequest_lib.a bin/server.exe lib/libgtest.a lib/libgtest_main.a
+build unit_tests.exe unit_tests[1]_tests.cmake | ${cmake_ninja_workdir}unit_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__unit_tests_Debug CMakeFiles/unit_tests.dir/src/unit_tests/db_factory_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/query_iterator_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/quest_crud_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/quest_subquest_loading_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/rest_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/rest_test_crud_quest.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/rest_test_crud_user.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/rest_test_quest_list.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/serialise_test_quest.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/serialise_test_user.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/user_crud_test.cpp.obj CMakeFiles/unit_tests.dir/src/unit_tests/user_quest_loading_test.cpp.obj | lib/libgtest_main.a libsidequest_lib.a libserver_lib.a libclient_lib.a lib/libgtest.a libsidequest_lib.a || lib/libgtest.a lib/libgtest_main.a libclient_lib.a libserver_lib.a libsidequest_lib.a server.exe
   FLAGS = -g
-  LINK_LIBRARIES = lib/libgtest_main.a  bin/libsidequest_lib.a  bin/libserver_lib.a  -lsqlite3  lib/libgtest.a  bin/libsidequest_lib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = lib/libgtest_main.a  libsidequest_lib.a  libserver_lib.a  libclient_lib.a  -lsqlite3  -lws2_32  lib/libgtest.a  libsidequest_lib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies
   OBJECT_DIR = CMakeFiles\unit_tests.dir
-  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\maxim\OneDrive\Dokumente\sidequestButInGood\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -D TEST_TARGET=unit_tests -D TEST_EXECUTABLE=C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/bin/unit_tests.exe -D TEST_EXECUTOR= -D TEST_WORKING_DIR=C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=unit_tests_TESTS -D CTEST_FILE=C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/unit_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P "C:/Program Files/JetBrains/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/GoogleTestAddTests.cmake" && cd /D C:\Users\maxim\OneDrive\Dokumente\sidequestButInGood\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies/sqlite3.dll C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/bin"
+  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\maxim\OneDrive\Dokumente\sidequestButInGood\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -D TEST_TARGET=unit_tests -D TEST_EXECUTABLE=C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/unit_tests.exe -D TEST_EXECUTOR= -D TEST_WORKING_DIR=C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=unit_tests_TESTS -D CTEST_FILE=C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/unit_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P "C:/Program Files/JetBrains/CLion 2024.2.2/bin/cmake/win/x64/share/cmake-3.29/Modules/GoogleTestAddTests.cmake" && cd /D C:\Users\maxim\OneDrive\Dokumente\sidequestButInGood\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies/sqlite3.dll C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug"
   PRE_LINK = cd .
   RESTAT = 1
-  TARGET_FILE = bin\unit_tests.exe
-  TARGET_IMPLIB = bin\libunit_tests.dll.a
+  TARGET_FILE = unit_tests.exe
+  TARGET_IMPLIB = libunit_tests.dll.a
   TARGET_PDB = unit_tests.exe.dbg
 
 
@@ -449,7 +635,7 @@ build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depen
 build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX_COMPILER__gmock_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
   DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj.d
   FLAGS = -g -std=c++17 -fdiagnostics-color=always -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock/include -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock/include -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src
 
@@ -481,7 +667,7 @@ build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_
 build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj: CXX_COMPILER__gmock_main_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
   DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj.d
   FLAGS = -g -std=c++17 -fdiagnostics-color=always -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googlemock -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src
 
@@ -595,7 +781,7 @@ build cmake_object_order_depends_target_gtest: phony || .
 build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX_COMPILER__gtest_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
   DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj.d
   FLAGS = -g -std=c++17 -fdiagnostics-color=always -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src
 
@@ -627,7 +813,7 @@ build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_
 build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: CXX_COMPILER__gtest_main_unscanned_Debug C$:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
   DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj.d
   FLAGS = -g -std=c++17 -fdiagnostics-color=always -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
+  INCLUDES = -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/sidequest -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/dependencies -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/server -IC:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/src/client -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest/include -isystem C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src
 
@@ -727,6 +913,10 @@ build _deps/googletest-build/googletest/install/strip: phony _deps/googletest-bu
 # =============================================================================
 # Target aliases.
 
+build client: phony client.exe
+
+build client_lib: phony libclient_lib.a
+
 build gmock: phony lib/libgmock.a
 
 build gmock_main: phony lib/libgmock_main.a
@@ -743,21 +933,13 @@ build libgtest.a: phony lib/libgtest.a
 
 build libgtest_main.a: phony lib/libgtest_main.a
 
-build libserver_lib.a: phony bin/libserver_lib.a
+build server: phony server.exe
 
-build libsidequest_lib.a: phony bin/libsidequest_lib.a
+build server_lib: phony libserver_lib.a
 
-build server: phony bin/server.exe
+build sidequest_lib: phony libsidequest_lib.a
 
-build server.exe: phony bin/server.exe
-
-build server_lib: phony bin/libserver_lib.a
-
-build sidequest_lib: phony bin/libsidequest_lib.a
-
-build unit_tests: phony bin/unit_tests.exe
-
-build unit_tests.exe: phony bin/unit_tests.exe
+build unit_tests: phony unit_tests.exe
 
 # =============================================================================
 # Folder targets.
@@ -767,7 +949,7 @@ build unit_tests.exe: phony bin/unit_tests.exe
 #############################################
 # Folder: C:/Users/maxim/OneDrive/Dokumente/sidequestButInGood/cmake-build-debug
 
-build all: phony bin/libsidequest_lib.a bin/libserver_lib.a bin/server.exe bin/unit_tests.exe _deps/googletest-build/all
+build all: phony libsidequest_lib.a libserver_lib.a server.exe libclient_lib.a client.exe unit_tests.exe _deps/googletest-build/all
 
 # =============================================================================
 

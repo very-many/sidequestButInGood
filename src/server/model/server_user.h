@@ -2,18 +2,18 @@
 
 #include <optional>
 #include <string>
-
-#include "model/user.h"
+#include "network/serialisable_user.h"
 #include "storage/persistable.h"
 
 namespace Sidequest::Server {
     class Query;
 
-    class ServerUser : public Sidequest::User, public Persistable {
+    class ServerUser : public SerialisableUser, public Persistable {
     public:
         typedef unsigned long Id;
 
         ServerUser(Database*, Id id);
+        ServerUser(Database*);
 
         ServerUser(Database* database, const std::string& display_name, const std::string& email, const std::string& password);
 

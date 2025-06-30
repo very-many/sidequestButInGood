@@ -38,6 +38,14 @@ namespace Sidequest::Server {
         }
     }
 
+    void Query::bind(const int parameter_index, const std::optional<long> &value) {
+        if (value.has_value()) {
+            bind(parameter_index, value.value());
+        } else {
+            bind_null(parameter_index);
+        }
+    }
+
     void Query::bind_null(const int parameter_index) {
         this->status_code = sqlite3_bind_null(prepared_statement, parameter_index);
         if (!is_ok())
@@ -60,9 +68,9 @@ namespace Sidequest::Server {
 
     std::string Query::read_text_value(const std::string &column_name) const {
         const int column_index = database->column_cache->get_column_index(prepared_statement, column_name);
-        const auto col_value = reinterpret_cast<const char *>(sqlite3_column_text(prepared_statement, column_index));
+        const auto col_value = (sqlite3_column_text(prepared_statement, column_index));
         if (col_value)
-            return std::string{col_value};
+            return std::string{reinterpret_cast<const char *>(col_value)};
         return "";
     }
 
