@@ -3,13 +3,13 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include "id.h"
 
 namespace Sidequest {
     class User;
 
     class Quest {
     public:
-        typedef unsigned long Id;
         enum Status {
             initial,
             done,

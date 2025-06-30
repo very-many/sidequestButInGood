@@ -29,7 +29,7 @@ namespace Sidequest::Server {
     void ServerQuest::bind_all_params(Query& query) const {
         query.bind(1, title);
         query.bind(2, description);
-        query.bind(3, Quest::status_to_string(status));
+        query.bind(3, status_to_string(status));
         query.bind(4, parent_id);
         query.bind(5, owner_id);
         query.bind(6, editor_id);

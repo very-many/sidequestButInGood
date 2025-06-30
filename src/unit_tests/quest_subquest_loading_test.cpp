@@ -9,7 +9,7 @@
 class QUEST_TEST : public ::testing::Test {
 protected:
     Sidequest::Server::Database* database = nullptr;
-    Sidequest::Server::ServerQuest::Id parent_id = 0;
+    Sidequest::Id parent_id = 0;
     std::vector<Sidequest::Quest*> quests = {};
 
     QUEST_TEST() {

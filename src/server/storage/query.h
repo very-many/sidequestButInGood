@@ -27,7 +27,7 @@ namespace Sidequest::Server {
         void execute();
         [[nodiscard]] bool has_row() const;
         [[nodiscard]] bool is_done() const;
-        [[nodiscard]] Quest::Id last_row_id() const;
+        [[nodiscard]] Id last_row_id() const;
 
         class Iterator {
         public:

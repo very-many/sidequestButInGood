@@ -82,7 +82,7 @@ namespace Sidequest::Server {
         return this->status_code == SQLITE_DONE;
     }
 
-    Quest::Id Query::last_row_id() const {
+    Id Query::last_row_id() const {
         return sqlite3_last_insert_rowid(database->getHandle());
     }
 

@@ -13,24 +13,24 @@ namespace Sidequest {
     Quest::Quest(std::string title, std::string description, Quest* parent, User* owner,
                  User* editor)
         : title(std::move(title)), description(std::move(description)), parent(parent), owner(owner), editor(editor) {
-        if (owner != nullptr)
-            owner_id = owner->id;
-        if (editor != nullptr)
-            editor_id = editor->id;
-        if (parent != nullptr)
-            parent_id = parent->id;
+        if (this->owner != nullptr)
+            owner_id = this->owner->id;
+        if (this->editor != nullptr)
+            editor_id = this->editor->id;
+        if (this->parent != nullptr)
+            parent_id = this->parent->id;
     }
 
     Quest::Quest(std::string title, std::string description, const Status status, Quest* parent, User* owner,
                  User* editor)
         : title(std::move(title)), description(std::move(description)), status(status), parent(parent), owner(owner),
           editor(editor) {
-        if (owner != nullptr)
-            owner_id = owner->id;
-        if (editor != nullptr)
-            editor_id = editor->id;
-        if (parent != nullptr)
-            parent_id = parent->id;
+        if (this->owner != nullptr)
+            owner_id = this->owner->id;
+        if (this->editor != nullptr)
+            editor_id = this->editor->id;
+        if (this->parent != nullptr)
+            parent_id = this->parent->id;
     }
 
     Quest::~Quest() {

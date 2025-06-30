@@ -1,7 +1,5 @@
 #include <server_application.h>
 
-#include <iostream>
-#include <chrono>
 #include <thread>
 
 #include "storage/database.h"
@@ -21,7 +19,6 @@
 namespace Sidequest::Server {
     ServerApplication::ServerApplication(const std::string& hostname, int port) {
         connection_handler = new ConnectionHandler(hostname, port);
-        // database = new Sidequest::Server::Database("sidequest.db");
         std::string db_path = R"(../application_root/sidequest.db)";
         std::string schema_path = R"(../application_root/create_database.sql)";
         database = DatabaseFactory::fetch_database(db_path, schema_path);

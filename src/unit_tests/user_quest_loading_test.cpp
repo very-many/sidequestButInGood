@@ -5,12 +5,11 @@
 #include "model/server_user.h"
 #include "model/user.h"
 #include "storage/database_factory.h"
-#include "storage/query.h"
 
 class USER_QUEST_TEST : public ::testing::Test {
 protected:
     Sidequest::Server::Database* database = nullptr;
-    Sidequest::Server::ServerQuest::Id owner_id = 0;
+    Sidequest::Id owner_id = 0;
 
     USER_QUEST_TEST() {
     }

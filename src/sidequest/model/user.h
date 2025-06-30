@@ -2,13 +2,13 @@
 
 #include <string>
 #include <vector>
+#include "id.h"
 
 namespace Sidequest {
     class Quest;
 
     class User {
     public:
-        typedef unsigned long Id;
         User();
         explicit User(Id);
 
