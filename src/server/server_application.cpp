@@ -51,17 +51,18 @@ namespace Sidequest::Server {
     }
 
     void ServerApplication::setup_commands() const {
-        connection_handler->register_put_command("/api/user/create", new CreateCommand<ServerUser>(database));
-        connection_handler->register_get_command("/api/user/:id/read", new ReadCommand<ServerUser>(database));
-        connection_handler->register_put_command("/api/user/:id/update", new UpdateCommand<ServerUser>(database));
-        connection_handler->register_delete_command("/api/user/:id/delete", new DeleteCommand<ServerUser>(database));
+        connection_handler->register_post_command("/api/v1/quests", new CreateCommand<ServerQuest>(database));
+        connection_handler->register_get_command("/api/v1/quests/:id", new ReadCommand<ServerQuest>(database));
+        connection_handler->register_put_command("/api/v1/quests/:id", new UpdateCommand<ServerQuest>(database));
+        connection_handler->register_delete_command("/api/v1/quests/:id", new DeleteCommand<ServerQuest>(database));
 
-        connection_handler->register_put_command("/api/quest/create", new CreateCommand<ServerQuest>(database));
-        connection_handler->register_get_command("/api/quest/:id/read", new ReadCommand<ServerQuest>(database));
-        connection_handler->register_put_command("/api/quest/:id/update", new UpdateCommand<ServerQuest>(database));
-        connection_handler->register_delete_command("/api/quest/:id/delete", new DeleteCommand<ServerQuest>(database));
+        connection_handler->register_get_command("/api/v1/quests/:id/subquests", new QuestsByParentCommand(database));
 
-        connection_handler->register_get_command("/api/quest/byparent/:id/", new QuestsByParentCommand(database));
-        connection_handler->register_get_command("/api/quest/byowner/:id/", new MainQuestsByOwnerCommand(database));
+        connection_handler->register_post_command("/api/v1/users", new CreateCommand<ServerUser>(database));
+        connection_handler->register_get_command("/api/v1/users/:id", new ReadCommand<ServerUser>(database));
+        connection_handler->register_put_command("/api/v1/users/:id", new UpdateCommand<ServerUser>(database));
+        connection_handler->register_delete_command("/api/v1/users/:id", new DeleteCommand<ServerUser>(database));
+
+        connection_handler->register_get_command("/api/v1/users/:id/quests", new MainQuestsByOwnerCommand(database));
     }
 }

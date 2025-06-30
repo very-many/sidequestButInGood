@@ -28,7 +28,7 @@ namespace Sidequest::Client {
 
     Id Stubs::create_user(SerialisableUser* user) const {
         std::string body = user->to_json().dump();
-        auto result = _http_client.Put("/api/user/create", body, "text/plain");
+        auto result = _http_client.Post("/api/v1/users", body, "text/plain");
         if (result.error() != httplib::Error::Success)
             throw RemoteCallFailedException(result.error());
         if (result->status != httplib::StatusCode::OK_200)
@@ -43,7 +43,7 @@ namespace Sidequest::Client {
 
     SerialisableUser* Stubs::read_user(Id id) const {
         std::string id_string = std::to_string(id);
-        auto response = _http_client.Get("/api/user/" + id_string + "/read");
+        auto response = _http_client.Get("/api/v1/users/" + id_string);
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("read user failed");
         auto json = Json::parse(response->body);
@@ -55,21 +55,21 @@ namespace Sidequest::Client {
     void Stubs::update_user(SerialisableUser* user) const {
         std::string body = user->to_json().dump();
         std::string id_string = std::to_string(user->id);
-        auto response = _http_client.Put("/api/user/" + id_string + "/update", body, "text/plain");
+        auto response = _http_client.Put("/api/v1/users/" + id_string, body, "text/plain");
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("update user failed");
     }
 
     void Stubs::delete_user(Id id) const {
         std::string id_string = std::to_string(id);
-        auto response = _http_client.Delete("/api/user/" + id_string + "/delete");
+        auto response = _http_client.Delete("/api/v1/users/" + id_string);
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("read user failed");
     }
 
     Id Stubs::create_quest(SerialisableQuest* quest) const {
         std::string body = quest->to_json().dump();
-        auto response = _http_client.Put("/api/quest/create", body, "text/plain");
+        auto response = _http_client.Post("/api/v1/quests", body, "text/plain");
         if (response.error() != httplib::Error::Success)
             throw RemoteCallFailedException(response.error());
         if (response->status != httplib::StatusCode::OK_200)
@@ -84,7 +84,7 @@ namespace Sidequest::Client {
 
     SerialisableQuest* Stubs::read_quest(Id id) const {
         std::string id_string = std::to_string(id);
-        auto response = _http_client.Get("/api/quest/" + id_string + "/read");
+        auto response = _http_client.Get("/api/v1/quests/" + id_string);
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("read quest failed");
         auto json = Json::parse(response->body);
@@ -96,14 +96,14 @@ namespace Sidequest::Client {
     void Stubs::update_quest(SerialisableQuest* quest) const {
         std::string body = quest->to_json().dump();
         std::string id_string = std::to_string(quest->id);
-        auto response = _http_client.Put("/api/quest/" + id_string + "/update", body, "text/plain");
+        auto response = _http_client.Put("/api/v1/quests/" + id_string, body, "text/plain");
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("update quest failed");
     }
 
     auto Stubs::delete_quest(Id id) -> void {
         std::string id_string = std::to_string(id);
-        auto response = _http_client.Delete("/api/quest/" + id_string + "/delete");
+        auto response = _http_client.Delete("/api/v1/quests/" + id_string);
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("read user failed");
     }
@@ -111,7 +111,7 @@ namespace Sidequest::Client {
     std::list<SerialisableQuest*> Stubs::quests_by_parent(Id id) const {
         auto result = std::list<SerialisableQuest*>();
         std::string id_string = std::to_string(id);
-        auto response = _http_client.Get("/api/quest/byparent/" + id_string + "/");
+        auto response = _http_client.Get("/api/v1/quests/" + id_string + "/subquests");
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("get quest by parent failed");
         auto json_quest_list = Json::parse(response->body);
@@ -126,7 +126,7 @@ namespace Sidequest::Client {
     std::list<SerialisableQuest*> Stubs::quests_by_owner(Id id) {
         auto result = std::list<SerialisableQuest*>();
         std::string id_string = std::to_string(id);
-        auto response = _http_client.Get("/api/quest/byowner/" + id_string + "/");
+        auto response = _http_client.Get("/api/v1/users/" + id_string + "/quests");
         if (response->status != httplib::StatusCode::OK_200)
             throw RemoteCallFailedException("get quest by owner failed");
         auto json_quest_list = Json::parse(response->body);
