@@ -21,7 +21,6 @@ namespace Sidequest {
         std::string display_name;
         std::string email;
         std::string password;
-
         std::vector<Quest *> main_quests;
     };
 }

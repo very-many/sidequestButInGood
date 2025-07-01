@@ -7,7 +7,7 @@
 
 class DB_FACTORY_TEST : public ::testing::Test {
 protected:
-    Sidequest::Server::Database *database = nullptr;
+    Sidequest::Server::Database* database = nullptr;
 
     DB_FACTORY_TEST() {
     }
@@ -27,7 +27,7 @@ protected:
 using namespace Sidequest::Server;
 
 TEST_F(DB_FACTORY_TEST, FETCH_DB) {
-    std::string db_path =  R"(../application_root/test.db)";
+    std::string db_path = R"(../application_root/test.db)";
     std::remove(db_path.c_str());
     std::string schema_path = R"(../application_root/create_database.sql)";
     const auto database = DatabaseFactory::fetch_database(db_path, schema_path);
@@ -58,6 +58,6 @@ TEST_F(DB_FACTORY_TEST, MISSING_SCHEMA_FILE) {
         DatabaseFactory::fetch_database(db_path, schema_path);
         FAIL();
     }
-    catch (const std::runtime_error &e) {
+    catch (const std::runtime_error& e) {
     }
 }

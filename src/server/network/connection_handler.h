@@ -21,6 +21,10 @@ namespace Sidequest::Server {
         void register_post_command(const std::string& endpoint, CommandHandler* command) const;
         void register_delete_command(const std::string& endpoint, CommandHandler* command) const;
 
+
+        //TODO: for dev
+        void register_options_command() const;
+
         void listen() const;
         void stop() const;
 

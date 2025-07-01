@@ -14,6 +14,7 @@ namespace Sidequest::Server {
     template <class ModelClass>
     void UpdateCommand<ModelClass>::execute(const httplib::Request& request, httplib::Response& response) {
         auto json = Json::parse(request.body);
+        std::cout << "updateCMD received with: " << json.dump() << std::endl;
         auto model_object = new ModelClass(database);
         model_object->from_json(json);
 
@@ -23,10 +24,12 @@ namespace Sidequest::Server {
         catch (UnableToCreateObjectException& e) {
             response.set_content(Json("unable to update model_object"), "text/plain");
             response.status = httplib::StatusCode::BadRequest_400;
+            response.set_header("Access-Control-Allow-Origin", "*"); //TODO: for dev
             return;
         }
 
-        response.set_content(Json().dump(), "text/plain");
+        response.set_content(model_object->to_json().dump(), "application/json");
+        response.set_header("Access-Control-Allow-Origin", "*"); //TODO: for dev
         response.status = httplib::StatusCode::OK_200;
     }
 }

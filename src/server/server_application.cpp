@@ -22,6 +22,9 @@ namespace Sidequest::Server {
         std::string db_path = R"(../application_root/sidequest.db)";
         std::string schema_path = R"(../application_root/create_database.sql)";
         database = DatabaseFactory::fetch_database(db_path, schema_path);
+
+        // ServerQuest(database, "quest11", "this is the first qust", nullptr, nullptr, nullptr).create_on_database();
+
         owns_database = true;
         setup_commands();
     }
@@ -61,5 +64,7 @@ namespace Sidequest::Server {
         connection_handler->register_delete_command("/api/v1/users/:id", new DeleteCommand<ServerUser>(database));
 
         connection_handler->register_get_command("/api/v1/users/:id/quests", new MainQuestsByOwnerCommand(database));
+
+        connection_handler->register_options_command();
     }
 }

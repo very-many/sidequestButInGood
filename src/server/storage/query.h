@@ -47,9 +47,9 @@ namespace Sidequest::Server {
         Iterator end();
 
     private:
+        int status_code = -1;
         Database* database;
         PreparedStatement* prepared_statement;
-        int status_code = -1;
 
         [[nodiscard]] bool is_ok() const;
     };

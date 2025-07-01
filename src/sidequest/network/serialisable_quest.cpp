@@ -47,7 +47,6 @@ namespace Sidequest {
         // such the id is not yet assigned
         if (json.contains("id"))
             json.at("id").get_to(id);
-
         title = json.at("title");
         description = json.at("description");
         status = json.at("status");

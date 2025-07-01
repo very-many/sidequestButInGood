@@ -28,9 +28,9 @@ namespace Sidequest {
         void add_subQuest(Quest* quest);
 
         Id id = 0;
+        Status status = initial;
         std::string title;
         std::string description;
-        Status status = initial;
         std::vector<Quest *> subquests;
 
         std::optional<Id> parent_id;

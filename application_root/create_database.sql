@@ -19,3 +19,5 @@ CREATE TABLE quest
     FOREIGN KEY (owner) REFERENCES user(id),
     FOREIGN KEY (editor) REFERENCES user(id)
 );
+
+INSERT INTO user(display_name, email, password) VALUES ('default', 'def@email.com', 'password');

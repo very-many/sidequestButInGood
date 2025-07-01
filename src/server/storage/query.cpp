@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <optional>
-#include <bits/locale_facets_nonio.h>
 
 #include "column_cache.h"
 #include "database.h"

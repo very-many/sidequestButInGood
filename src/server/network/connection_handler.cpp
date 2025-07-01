@@ -37,6 +37,21 @@ namespace Sidequest::Server {
         server->Delete(endpoint, function);
     }
 
+    //TODO for dev
+    void ConnectionHandler::register_options_command() const {
+        auto optFunc = [](const httplib::Request& req, httplib::Response& res) {
+            res.set_header("Access-Control-Allow-Origin", "*");
+            res.set_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            res.set_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
+            res.status = httplib::StatusCode::OK_200;
+        };
+        server->Options("/api/v1/quests", optFunc);
+        server->Options("/api/v1/quests/:id", optFunc);
+        server->Options("/api/v1/users", optFunc);
+        server->Options("/api/v1/users/:id", optFunc);
+    }
+
     void ConnectionHandler::listen() const {
         server->listen(hostname, port);
     }

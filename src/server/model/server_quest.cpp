@@ -14,9 +14,10 @@ namespace Sidequest::Server {
     ServerQuest::ServerQuest(Database* database, const Id id) : SerialisableQuest(id), Persistable(database) {
     }
 
-    ServerQuest::ServerQuest(Database* database, const std::string& title, const std::string& description, Quest* parent,
+    ServerQuest::ServerQuest(Database* database, const std::string& title, const std::string& description,
+                             Quest* parent,
                              User* owner, User* editor)
-        : SerialisableQuest(title, description, initial ,parent, owner, editor), Persistable(database) {
+        : SerialisableQuest(title, description, initial, parent, owner, editor), Persistable(database) {
     }
 
     ServerQuest::ServerQuest(Database* database, const std::string& title, const std::string& description,
@@ -37,7 +38,7 @@ namespace Sidequest::Server {
 
     void ServerQuest::create_on_database() {
         auto query = Query(database,
-            "INSERT INTO quest(title, description, status, parent, owner, editor) VALUES (?, ?, ?, ?, ?, ?);");
+                           "INSERT INTO quest(title, description, status, parent, owner, editor) VALUES (?, ?, ?, ?, ?, ?);");
         bind_all_params(query);
         query.execute();
         if (!query.is_done())
