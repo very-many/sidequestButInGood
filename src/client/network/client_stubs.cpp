@@ -10,7 +10,6 @@ using json = nlohmann::json;
 #include "network/serialisable_user.h"
 #include "network/serialisable_quest.h"
 
-
 namespace Sidequest::Client {
     RemoteCallFailedException::RemoteCallFailedException(const std::string& message)
         : runtime_error(message) {
@@ -31,7 +30,7 @@ namespace Sidequest::Client {
         auto result = _http_client.Post("/api/v1/users", body, "text/plain");
         if (result.error() != httplib::Error::Success)
             throw RemoteCallFailedException(result.error());
-        if (result->status != httplib::StatusCode::OK_200)
+        if (result->status != httplib::StatusCode::Created_201)
             throw RemoteCallFailedException("create user failed");
 
         auto json_response = Json::parse(result.value().body);
@@ -63,7 +62,7 @@ namespace Sidequest::Client {
     void Stubs::delete_user(Id id) const {
         std::string id_string = std::to_string(id);
         auto response = _http_client.Delete("/api/v1/users/" + id_string);
-        if (response->status != httplib::StatusCode::OK_200)
+        if (response->status != httplib::StatusCode::NoContent_204)
             throw RemoteCallFailedException("read user failed");
     }
 
@@ -72,7 +71,7 @@ namespace Sidequest::Client {
         auto response = _http_client.Post("/api/v1/quests", body, "text/plain");
         if (response.error() != httplib::Error::Success)
             throw RemoteCallFailedException(response.error());
-        if (response->status != httplib::StatusCode::OK_200)
+        if (response->status != httplib::StatusCode::Created_201)
             throw RemoteCallFailedException("create quest failed");
 
         auto json_response = Json::parse(response.value().body);
@@ -104,7 +103,7 @@ namespace Sidequest::Client {
     auto Stubs::delete_quest(Id id) -> void {
         std::string id_string = std::to_string(id);
         auto response = _http_client.Delete("/api/v1/quests/" + id_string);
-        if (response->status != httplib::StatusCode::OK_200)
+        if (response->status != httplib::StatusCode::NoContent_204)
             throw RemoteCallFailedException("read user failed");
     }
 

@@ -14,7 +14,7 @@ namespace Sidequest::Server {
     template <class ModelClass>
     void UpdateCommand<ModelClass>::execute(const httplib::Request& request, httplib::Response& response) {
         auto json = Json::parse(request.body);
-        std::cout << "updateCMD received with: " << json.dump() << std::endl;
+        // std::cout << "updateCMD received with: " << json.dump() << std::endl;
         auto model_object = new ModelClass(database);
         model_object->from_json(json);
 

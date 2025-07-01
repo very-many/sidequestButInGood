@@ -48,7 +48,7 @@ namespace Sidequest::Server {
 
     Query* QuestsByParentCommand::create_query(const httplib::Request& request) {
         Id parent_id = std::stoul(request.path_params.at("id"));
-        std::cout << "ByParentCMD received with: " << parent_id << std::endl;
+        // std::cout << "ByParentCMD received with: " << parent_id << std::endl;
         auto query = new Query(database, "SELECT * FROM quest WHERE parent=?;");
         query->bind(1, static_cast<long>(parent_id));
         return query;
@@ -60,7 +60,7 @@ namespace Sidequest::Server {
 
     Query* MainQuestsByOwnerCommand::create_query(const httplib::Request& request) {
         Id owner_id = std::stoul(request.path_params.at("id"));
-        std::cout << "ByOwnerCMD received with: " << owner_id << std::endl;
+        // std::cout << "ByOwnerCMD received with: " << owner_id << std::endl;
         auto query = new Query(database, "SELECT * FROM quest WHERE parent IS NULL and owner = ?; ");
         query->bind(1, owner_id);
         return query;
