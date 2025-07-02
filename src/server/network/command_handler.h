@@ -13,6 +13,8 @@ namespace Sidequest::Server {
         virtual ~CommandHandler() = default;
         virtual void execute(const Request& request, Response& response) = 0;
 
+        static void set_CORS_header(httplib::Response& response);
+
         std::function<void(const Request&, Response&)> get_function();
     };
 }

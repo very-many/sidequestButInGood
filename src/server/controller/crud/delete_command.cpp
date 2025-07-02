@@ -16,7 +16,7 @@ namespace Sidequest::Server {
     template <class ModelClass>
     void DeleteCommand<ModelClass>::execute(const httplib::Request& request, httplib::Response& response) {
         Id object_id = std::stoul(request.path_params.at("id"));
-        // std::cout << "deleteCMD received with: " << object_id << std::endl;
+        std::cout << "deleteCMD received with: " << object_id << std::endl;
         auto model_object = new ModelClass(database);
         model_object->id = object_id;
 
@@ -26,12 +26,12 @@ namespace Sidequest::Server {
         catch (UnableToCreateObjectException& e) {
             response.set_content(Json("unable to delete model_object"), "text/plain");
             response.status = httplib::StatusCode::BadRequest_400;
-            response.set_header("Access-Control-Allow-Origin", "*"); //TODO: for dev
+            set_CORS_header(response);
             return;
         }
 
         response.set_content("", "text/plain");
-        response.set_header("Access-Control-Allow-Origin", "*"); //TODO: for dev
+        set_CORS_header(response);
         response.status = httplib::StatusCode::NoContent_204;
     }
 }
